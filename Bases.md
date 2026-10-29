@@ -19,6 +19,7 @@
 $ ls
 $ ls -r   # Pour voir à l'intérieur des dossiers
 $ ls -a   # Montre les fichiers cachés
+$ ls -l   # Donne les détails de permissions
 ```
 ### Déplacement
 ```bash
