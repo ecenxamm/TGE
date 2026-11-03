@@ -91,13 +91,13 @@ scp virus user1@10.10.15.158:/tmp/virus               # De notre machine au serv
 ```
 ### Connexion FTP
 Le protocole FTP (File Transfer Protocol) peut avoir de belles propriétés en pentest, notamment grpace à son utilisateur `anonymous` qui ne possède pas de mot de passe. Mal nettoyé, on peut y trouver indices.
-Le port utilisé par le service FTP est généralement le port **21**.
+Le port utilisé par le protocole FTP est généralement le port **21**.
 ```bash
 # Connexion - Ouvre un formulaire user/password
 ftp 10.10.14.158
 ```
-Le service FTP possède des commandes propres à lui, qui ont quelques ressemblances avec les commandes Linux.
-La grande différence est que ce service est utilisé principalement pour le transfert de fichiers, il n'est donc pas possible de lire un fichier dans la console FTP, mais par contre il ets très simple de télécharger un fichier se trouvant dans le serveur distant.
+Le protocole FTP possède des commandes propres à lui, qui ont quelques ressemblances avec les commandes Linux.
+La grande différence est que ce protocole est utilisé principalement pour le transfert de fichiers, il n'est donc pas possible de lire un fichier dans la console FTP, mais par contre il est très simple de télécharger un fichier se trouvant dans le serveur distant.
 ```bash
 ls         # Lister les fichiers
 pwd        # Renvoie notre emplacement sur le serveur
