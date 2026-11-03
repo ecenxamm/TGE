@@ -91,7 +91,74 @@ $ cat "./-file07"
 
 # On aurait pu les tester un par un, mais c'est loin d'être optimal...
 ```
+# Bandit5
+```bash
+$ ssh bandit5@bandit.labs.overthewire.org -p 2220
+6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
 
+# Idem, on va dans le dossier inhere, et on cherche le fichier qui a ces propriétés :
+# - human-readable
+# - 1033 bytes in size
+# - not executable
 
+# -size 1033 : 1033 bytes
+# ! -executable : Le ! marque la négation
+$ find . -size 1033c ! -executable | xargs file
+./maybehere07/.file2: ASCII text, with very long lines (1000)
 
+$ cat ./maybehere07/.file2
+pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+```
+# Bandit6
+```bash
+$ ssh bandit6@bandit.labs.overthewire.org -p 2220
+pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
 
+# On cherche dans tout le serveur ce fichier :
+# - owned by user bandit7
+# - owned by group bandit6
+# - 33 bytes in size
+
+# Le 2>/dev/null détourne les messages d'erreurs (manque de permissions) dans un fichier null, ce qui allège l'affichage
+$ find / -size 33c -user bandit7 -group bandit6 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+
+$ cat /var/lib/dpkg/info/bandit7.password
+Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+```
+# Bandit7
+```bash
+$ ssh bandit7@bandit.labs.overthewire.org -p 2220
+Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+
+$ cat data.txt | grep millionth
+millionth       VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+```
+# Bandit8
+```bash
+$ ssh bandit8@bandit.labs.overthewire.org -p 2220
+VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+
+# uniq fonctionne uniquement sur des doublons consécutifs, donc on trie en amont
+# -c affiche le nombre d'occurence
+# On extrait alors là où il n'y a qu'une seule occurence
+$ sort data.txt | uniq -c | grep "1 "
+EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+```
+# Bandit9
+```bash
+$ ssh bandit9@bandit.labs.overthewire.org -p 2220
+EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+
+# La commande strings extraie les chaîne de caractères d'un fichier binaire
+$ strings data.txt | grep "==="
+========== the
+========== password
+========== is
+========== B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+```
+# Bandit10
+```bash
+$ ssh bandit10@bandit.labs.overthewire.org -p 2220
+B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+```
