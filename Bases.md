@@ -73,7 +73,7 @@ rm -rf dossier   # Supprime un dossier et tout ce qu'il contient (-f : force / -
 # Connaître le type d'un fichier et de son contenu
 file fichier
 ```
-### Connexions à distance
+### Connexions à distance SSH
 ```bash
 # Ouvrir un terminal à distance
 ssh [utilisateur]@[adresse] -p 22   # Le port SS par défaut est 22
@@ -88,6 +88,34 @@ scp [fichier] [destination]
 # Exemple - On rentre l'addresse avec user@adresse, puis on mets : et le chemin vers le fichier à télécharger / téléverser
 scp user1@10.10.15.158:/home/user1/mdps.txt mdps.txt  # Du serveur à notre machine
 scp virus user1@10.10.15.158:/tmp/virus               # De notre machine au serveur
+```
+### Connexion FTP
+Le protocole FTP (File Transfer Protocol) peut avoir de belles propriétés en pentest, notamment grpace à son utilisateur `anonymous` qui ne possède pas de mot de passe. Mal nettoyé, on peut y trouver indices.
+Le port utilisé par le service FTP est généralement le port **21**.
+```bash
+# Connexion - Ouvre un formulaire user/password
+ftp 10.10.14.158
+```
+Le service FTP possède des commandes propres à lui, qui ont quelques ressemblances avec les commandes Linux.
+La grande différence est que ce service est utilisé principalement pour le transfert de fichiers, il n'est donc pas possible de lire un fichier dans la console FTP, mais par contre il ets très simple de télécharger un fichier se trouvant dans le serveur distant.
+```bash
+ls         # Lister les fichiers
+pwd        # Renvoie notre emplacement sur le serveur
+
+# Se déplacer dans un dossier
+cd dossier
+mkdir nouveau    # Créé un nouveau dossier
+
+# Télécharger un fichier sur sa machine
+get fichier.txt
+mget fichier1 fichier2    # Pour plusieurs fichiers
+
+# Téléverser un fichier vers le serveur
+put fichier.txt
+mput fichier1 fichier2    # Pour plusieurs fichiers
+
+# Fermer le terminal FTP
+quit
 ```
 ### Sudo
 Sudo est une commande réservée à un certain groupe d'utilisateurs, appelés les **sudoers**. Mise au début d'une commande, elle permet au sudoer de lancer la commande avec les droits administrateurs.
