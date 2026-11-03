@@ -161,4 +161,111 @@ $ strings data.txt | grep "==="
 ```bash
 $ ssh bandit10@bandit.labs.overthewire.org -p 2220
 B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+
+$ cat data.txt
+VGhlIHBhc3N3b3JkIGlzIHBZZk9ZNkh3VXNEajVyTDlVdnloVTdNQ212OHZONVJvCg==
+
+$ cat data.txt | base64 -d
+The password is pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+```
+# Bandit11
+```bash
+$ ssh bandit11@bandit.labs.overthewire.org -p 2220
+pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+
+# La commande tr translate les caractères d'une regex à l'autre
+# [a-z] est l'alphabet en minuscule. [m-za-l] est l'alphabet en minuscule, en commençant à m et en faisant le tour.
+# On met un & pour avoir une deuxième chaîne en parallèle, sinon un M devient un z au lieu d'un Z
+$ cat data.txt | tr "[a-z&A-Z]" "[n-za-m&N-ZA-M]"
+The password is GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+```
+# Bandit12
+```bash
+$ ssh bandit12@bandit.labs.overthewire.org -p 2220
+GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+
+# On fait les étapes indiquées pour travailler dans un dossier temporaire
+$ mktemp -d
+/tmp/tmp.3mdr6bGV07
+
+$ cp data.txt /tmp/tmp.3mdr6bGV07/data.zip  # Déplace le fichier
+$ cd /tmp/tmp.3mdr6bGV07                    # On se déplace
+$ xxd -r data.txt > d.gz                    # Convertis le hex en binaire
+$ file d.gz
+d.gz: gzip compressed data, was "data2.bin", last modified: Sun Oct 25 13:37:03 2026, max compression, from Unix, original size modulo 2^32 585
+
+$ gzip -df d.gz
+$ ls
+d  data.txt
+
+$ file d
+d: bzip2 compressed data, block size = 900k
+
+$ $ bzip2 -df d
+bzip2: Can\'t guess original name for d -- using d.out
+
+$ file d.out
+d.out: gzip compressed data, was "data4.bin", last modified: Sun Oct 25 13:37:03 2026, max compression, from Unix, original size modulo 2^32 20480
+
+$ mv d.out d.gz; gzip -df d.gz
+$ ls
+d  data.txt
+
+$ file d
+d: POSIX tar archive (GNU)
+
+$ mv d d.tar; tar -xvf d.tar
+data5.bin
+
+$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+
+$ mv data5.bin d2.tar; tar -xvf d2.tar
+data6.bin
+
+$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+
+$ mv data6.bin d3.bz2; bzip2 -df d3.bz2
+$ file d3
+d3: POSIX tar archive (GNU)
+
+$ ... ETC C'EST LONG DE FOU
+```
+
+On aurait pu, pour simplifier la tâche, exécuter ce script :
+```bash
+#!/bin/bash
+
+# Récupération du fichier passé en 1er argument
+FILENAME="$1"
+
+# On boucle tant que le fichier n'est pas du texte ASCII
+# On utilise 'grep -v' pour continuer TANT QUE "ASCII text" n'est pas trouvé
+while ! file "$FILENAME" | grep -q "ASCII text"; do
+
+    # On récupère le type exact du fichier actuel
+    TYPE=$(file -b "$FILENAME")
+    echo "Type actuel : $TYPE"
+
+    if [[ "$TYPE" == *"POSIX tar archive"* ]]; then
+        mv "$FILENAME" "d.tar"
+        FILENAME=$(tar -xvf d.tar)
+
+    elif [[ "$TYPE" == *"bzip2 compressed data"* ]]; then
+        mv "$FILENAME" "d.bz2"
+        bzip2 -df d.bz2
+        FILENAME="d"
+    
+    elif [[ "$TYPE" == *"gzip compressed data"* ]]; then
+	    mv "$FILENAME" "d.gz"
+	    gzip -df d.gz
+        FILENAME="d"
+    else
+        echo "Format non géré ou fin de compression : $TYPE"
+        break
+    fi
+done
+
+echo "Décompression terminée. Le fichier final est : $FILENAME"
 ```
