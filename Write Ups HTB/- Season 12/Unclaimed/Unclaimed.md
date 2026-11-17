@@ -254,7 +254,7 @@ Machine complétée : https://labs.hackthebox.com/achievement/machine/466078/101
 4. Correctif `LEN` → `DATALENGTH` pour contourner la troncature du script sur SQL 2025 → `W0rldTr@cer_B@ckup1`.
 5. Evil-WinRM en `svc_wtbackup` → `SeBackupPrivilege` + `robocopy /b` → `root.txt`.
 
-## Schéma récapitulatif du workflow
+# Schéma récapitulatif du workflow
 
 ```mermaid
 flowchart TD
